@@ -1,3 +1,60 @@
 <resources>
+    <string name="app_titel">Hans Arndt GmbH</string>
     <string name="app_name">Hans Arndt GmbH</string>
+    <string name="artikel">Einzelansicht Artikel</string>
+    <string name="map">Hier sind wir zu finden</string>
+    <string name="sucherg">Das Ergebnis ihrer Suche</string>
+
+    <string name="login">Loggen Sie sich mit \nihrer Kundennummer ein</string>
+    <string name="kontakt">Nehmen Sie Kontakt \nzu uns auf</string>
+    <string name="katalog">Blättern Sie durch \nunsere Artikel</string>
+
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
+
+    <string name="txt_send_items">sent items</string>
+    <string name="txt_trash">trash</string>
+    <string name="txt_inbox">Inbox</string>
+    <string name="txt_draft">draft</string>
+    <string name="spot_catchat_com">spot@catchat.com</string>
+
+    <string name="k01">Sechskant-Winkelschraubendreher</string>
+    <string name="k02">Sechskant-Winkelschraubendreher, lange Ausführung</string>
+    <string name="k03">Sechskant-Schraubendreher mit Griff</string>
+    <string name="k04">Kugelkopf-Schraubendreher</string>
+    <string name="k05">Schraubendreher für Innen-TX-Schrauben</string>
+    <string name="k06">Schraubendreher für Vielzahn- und Ribe-Schrauben</string>
+    <string name="k07">Bits</string>
+    <string name="k08">Bit-Halter und -Sätze</string>
+    <string name="k09">Schraubenschlüssel / Schraubendreher</string>
+    <string name="k10">Kästen und Schraubenschlüssel</string>
+    <string name="kneu">Neuheiten 2019</string>
+    <string name="kaktion">Aktuelle Monatsaktion</string>
+    <string name="suchen">nach Artikel suchen</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_katalog">KatalogActivity</string>
+
+    <string name="json">http://www.arndt-tool.de/app/php/json.php</string>
+    <string name="imageWeb">http://www.arndt-tool.de/app/img/</string>
+    <string name="kjkl">jshlhdhkahsdkashkdjh</string>
+    <string name="title_activity_login">Login</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
 </resources>

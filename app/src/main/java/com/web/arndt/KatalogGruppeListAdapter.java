@@ -42,7 +42,7 @@ public class KatalogGruppeListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         KatalogGruppeListAdapter.ViewHolder holder;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.list_kat_layout, null);
+            convertView = layoutInflater.inflate(R.layout.activity_katalog, null);
             holder = new KatalogGruppeListAdapter.ViewHolder();
             holder.grupLeftView = (ImageView) convertView.findViewById(R.id.imageView_left);
             holder.grupMidView = (ImageView) convertView.findViewById(R.id.imageView_mid);

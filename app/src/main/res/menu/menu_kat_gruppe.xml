@@ -1,19 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+    <group android:checkableBehavior="single">
 
-    <item android:id="@+id/action_starte_browser"
-        android:orderInCategory="50"
-        app:showAsAction="never"/>
+        <item
+            android:id="@+id/app_bar_search"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="Search"
+            app:actionViewClass="android.widget.SearchView" />
 
-    <item android:id="@+id/action_teile_aktiendaten"
-        app:showAsAction="ifRoom"
-        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
+        <item android:id="@+id/nav_01"
+            android:icon="@android:drawable/sym_action_email"
+            android:title="@string/k01"/>
 
+        <item android:id="@+id/nav_02"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="@string/k02"/>
 
+        <item android:id="@+id/nav_03"
+            android:icon="@android:drawable/ic_menu_send"
+            android:title="@string/k03"/>
+
+        <item android:id="@+id/nav_04"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/k04"/>
+
+        <item android:id="@+id/nav_05"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/k05"/>
+
+        <item android:id="@+id/nav_06"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/k06"/>
+
+        <item android:id="@+id/nav_07"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/k07"/>
+
+        <item android:id="@+id/nav_08"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/k08"/>
+
+        <item android:id="@+id/nav_09"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/k09"/>
+
+        <item android:id="@+id/nav_10"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/k10"/>
+    </group>
 
 </menu>

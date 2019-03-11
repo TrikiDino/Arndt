@@ -1,12 +1,21 @@
 package com.web.arndt;
 
+// ToDo die Struktur für die Anzeige des Kataloginhaltes - OK
+// Die Struktur lehnt sich an die Struktur des Papierkataloges und der Web-Site an
+
 public class Katalog {
+    private String kapitel;
     private String imgName;
     private String katGrupText;
+    private int von;
+    private int bis;
 
-    public Katalog(String imgName, String katGrupText){
+    public Katalog(String kapitel, String imgName, String katGrupText, int von, int bis){
+        this.kapitel = kapitel;
         this.imgName = imgName;
         this.katGrupText = katGrupText;
+        this.von = von;
+        this.bis = bis;
     }
 
     public String getImgName(){
@@ -17,16 +26,24 @@ public class Katalog {
         return katGrupText;
     }
 
-    public void setImgName(String imgName){
-        this.imgName = imgName;
+    public String getKapitel() {
+        return kapitel;
     }
 
-    public void setKatGrupText(String katGrupText){
-        this.katGrupText = katGrupText;
+    public int getVon() {
+        return von;
+    }
+
+    public int getBis() {
+        return bis;
+    }
+
+    public String toSQL(){
+         return "?kat" + kapitel;
     }
 
     @Override
     public String toString() {
-        return "http://www.arndt-tool.de/imgapp/menu/" + imgName;
+        return "http://www.arndt-tool.de/app/img/menu/" + imgName;
     }
 }
