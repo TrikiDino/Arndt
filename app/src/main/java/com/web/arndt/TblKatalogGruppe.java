@@ -4,7 +4,7 @@ package com.web.arndt;
 // Die Struktur orientiert sich an der bestehenden Struktur der Warengrppen in der fs_web
 // und lehnt sich an die Struktur des Papierkataloges an
 
-public class KatalogGruppe {
+public class TblKatalogGruppe {
     private String sprache = "Sprache";
     private String kuerzel = "Kuerzel";
     private String gruppe = "Gruppe";
@@ -24,7 +24,7 @@ public class KatalogGruppe {
     private String noart1 = "NoArt1";
     private String noart2 = "NoArt2";
     private String sb = "SB";
-    private String stueckliste = "Stueckliste";
+    private String stueckliste = "TblStueckliste";
     private String grafik2 = "Grafik2";
     private String zustext = "zusText";
     private String neuheit = "Neuheit";

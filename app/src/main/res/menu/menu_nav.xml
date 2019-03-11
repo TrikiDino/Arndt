@@ -16,11 +16,13 @@
         <item android:id="@+id/nav_katalog"
             android:title="@string/katalog"
             android:checked="true"/>
+    </group>
+    <item android:title="Suche">
         <item
             android:id="@+id/app_bar_search"
             android:icon="@drawable/ic_search_black_24dp"
             android:title="@string/suchen"
             app:actionViewClass="android.widget.SearchView" />
-    </group>
+    </item>>
 
 </menu>

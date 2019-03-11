@@ -3,11 +3,14 @@ package com.web.arndt;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ArtikelActivity extends AppCompatActivity {
+// ToDo Anzeige des Suchergebnisses und Auswählmöglichkeit
+// evtl. mit Kataloggruppe zusammenführen
+
+public class ActivitySucherg extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_artikel);
+        setContentView(R.layout.activity_sucherg);
     }
 }

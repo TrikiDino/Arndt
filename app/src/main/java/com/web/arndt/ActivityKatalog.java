@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 
 import org.json.JSONException;
 
@@ -18,8 +17,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class KatalogActivity extends AppCompatActivity {
-    private static final String TAG = KatalogActivity.class.getSimpleName();
+public class ActivityKatalog extends AppCompatActivity {
+    private static final String TAG = ActivityKatalog.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,50 +39,50 @@ public class KatalogActivity extends AppCompatActivity {
 
     }
 
-    DatenUtil holeKapitel = new DatenUtil();
+    UtilDaten holeKapitel = new UtilDaten();
     String para = "";
 
     public void onClickKat01(View view) {
 
         switch (view.getId()) {
             case R.id.imgKat01:
-                Log.d(TAG, "onClick: Katalog 1 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 1 gewählt");
                 para = "?kat=01";
                 break;
             case R.id.imgKat02:
-                Log.d(TAG, "onClick: Katalog 2 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 2 gewählt");
                 para = "?kat=02";
                 break;
             case R.id.imgKat03:
-                Log.d(TAG, "onClick: Katalog 3 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 3 gewählt");
                 para = "?kat=03";
                 break;
             case R.id.imgKat04:
-                Log.d(TAG, "onClick: Katalog 4 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 4 gewählt");
                 para = "?kat=04";
                 break;
             case R.id.imgKat05:
-                Log.d(TAG, "onClick: Katalog 5 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 5 gewählt");
                 para = "?kat=05";
                 break;
             case R.id.imgKat06:
-                Log.d(TAG, "onClick: Katalog 6 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 6 gewählt");
                 para = "?kat=06";
                 break;
             case R.id.imgKat07:
-                Log.d(TAG, "onClick: Katalog 7 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 7 gewählt");
                 para = "?kat=07";
                 break;
             case R.id.imgKat08:
-                Log.d(TAG, "onClick: Katalog 8 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 8 gewählt");
                 para = "?kat=08";
                 break;
             case R.id.imgKat09:
-                Log.d(TAG, "onClick: Katalog 9 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 9 gewählt");
                 para = "?kat=09";
                 break;
             case R.id.imgKat10:
-                Log.d(TAG, "onClick: Katalog 10 gewählt");
+                Log.d(TAG, "onClick: TblKatalog 10 gewählt");
                 para = "?kat=10";
                 break;
             default:

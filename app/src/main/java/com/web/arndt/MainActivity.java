@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment fragment = new StartFragment();
+        Fragment fragment = new FragmentStart();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.content_frame,fragment);
         transaction.commit();
 
 
-        Katalog[] katalog = new Katalog[9];
+        TblKatalog[] katalog = new TblKatalog[9];
 
         for(int i = 0;i<9;i++){
             //katalog[i] = "katalog0" + (i+1) + ".png";
@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // android.R.layout.simple_list_item_1 is a constant predefined layout of Android.
         // used to create a ListView with simple ListItem (Only one TextView).
 
-        ArrayAdapter<Katalog> arrayAdapter
-                = new ArrayAdapter<Katalog>(this, android.R.layout.simple_list_item_1 , katalog);
+        ArrayAdapter<TblKatalog> arrayAdapter
+                = new ArrayAdapter<TblKatalog>(this, android.R.layout.simple_list_item_1 , katalog);
 
         //listView.setAdapter(arrayAdapter);
     }
@@ -63,19 +63,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = null;
         switch (id) {
             case R.id.nav_katalog:
-                intent = new Intent(this,KatalogActivity.class);
+                intent = new Intent(this, ActivityKatalog.class);
                 break;
             case R.id.nav_kontakt:
-                fragment = new KontaktFragment();
+                fragment = new FragmentKontakt();
                 break;
             case R.id.nav_login:
-                fragment = new LoginFragment();
+                intent = new Intent(this,ActivityLogin.class);
                 break;
             case R.id.nav_map:
-                fragment = new MapFragment();
+                fragment = new FragmentMap();
                 break;
             default:
-                intent = new Intent(this,KatalogActivity.class);
+                intent = new Intent(this, ActivityKatalog.class);
                 break;
         }
 

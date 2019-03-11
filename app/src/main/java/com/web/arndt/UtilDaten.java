@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,21 +12,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.MessageFormat;
 
-public class DatenUtil {
-    private static final String TAG = DatenUtil.class.getSimpleName();
+public class UtilDaten {
+    private static final String TAG = UtilDaten.class.getSimpleName();
     private static final String URL = "http://www.arndt-tool.de/app/php/json.php";
     private static final String KEY = "d5c4b212974962c8406a035fe3c4b5fc";
 
-    //Katalog Kapitel
+    //TblKatalog Kapitel
     private static final String KAPITEL = "Kapitel";
     private static final String IMGNAME = "imgName";
     private static final String KATGRUPTEXT = "katGrupText";
     private static final String VON = "von";
     private static final String BIS = "bis";
 
-    // Katalog Kapitel Verzeichnis
+    // TblKatalog Kapitel Verzeichnis
     private static final String SPRACHE = "Sprache";
     private static final String KUERZEL = "Kuerzel";
     private static final String GRUPPE = "Gruppe";
@@ -47,7 +45,7 @@ public class DatenUtil {
     private static final String NOART1 = "NoArt1";
     private static final String NOART2 = "NoArt2";
     private static final String SB = "SB";
-    private static final String STUECKLISTE = "Stueckliste";
+    private static final String STUECKLISTE = "TblStueckliste";
     private static final String GRAFIK2 = "Grafik2";
     private static final String ZUSTEXT = "zusText";
     private static final String NEUHEIT = "Neuheit";
@@ -55,7 +53,7 @@ public class DatenUtil {
     private static final String SCHALTER = "Schalter";
     private static final String SORT = "Sort";
 
-    // Artikel
+    // TblArtikel
 
     // Stückliste
 
@@ -79,13 +77,13 @@ public class DatenUtil {
         return stringBuilder.toString();
     }
 
-    public static Katalog[] getKatalog() throws JSONException, IOException {
+    public static TblKatalog[] getKatalog() throws JSONException, IOException {
         String kapitel = null;
         String imgName = null;
         String katGrupText = null;
         int von = 0;
         int bis = 0;
-        Katalog[] ergKat = null;
+        TblKatalog[] ergKat = null;
 
         JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + ""));
 
@@ -95,22 +93,22 @@ public class DatenUtil {
         return ergKat;
     }
 
-    public static KatalogGruppe[] getKapitel(String para) throws JSONException, IOException {
+    public static TblKatalogGruppe[] getKapitel(String para) throws JSONException, IOException {
 
         JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + para));
         return null;
 
     }
 
-    public static Artikel[] getArtikel(String para) throws JSONException, IOException {
+    public static TblArtikel[] getArtikel(String para) throws JSONException, IOException {
 
-        // ToDo Artikel abrufen und zu Anzeige bereit stellen
+        // ToDo TblArtikel abrufen und zu Anzeige bereit stellen
         JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + para));
         return null;
 
     }
 
-    public static Stueckliste[] getStueckliste(String para) throws JSONException, IOException {
+    public static TblStueckliste[] getStueckliste(String para) throws JSONException, IOException {
 
         // ToDo Stückliste abrufen und zur Anzeige bereit stellen
         JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + para));
@@ -118,7 +116,7 @@ public class DatenUtil {
 
     }
 
-    public static Bitmap getImage(Katalog katalog) throws IOException {
+    public static Bitmap getImage(TblKatalog katalog) throws IOException {
 
         // ToDo Grafik aus Web laden, wenn nicht lokal vorhanden
         java.net.URL req = new URL(katalog.toString());

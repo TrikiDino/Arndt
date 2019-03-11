@@ -11,15 +11,15 @@ import android.widget.ImageView;
 import java.util.Arrays;
 import java.util.List;
 
-public class KatalogGruppeListAdapter extends BaseAdapter {
+public class AdapterKatalogGruppeList extends BaseAdapter {
 
     private List<String> listData;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public KatalogGruppeListAdapter(Context aContext, String katInd) {
+    public AdapterKatalogGruppeList(Context aContext, String katInd) {
         this.context = aContext;
-        this.listData = Arrays.asList(new KatalogGruppe(katInd).getGruppe());
+        this.listData = Arrays.asList(new TblKatalogGruppe(katInd).getGruppe());
         layoutInflater = LayoutInflater.from(aContext);
     }
 
@@ -40,16 +40,16 @@ public class KatalogGruppeListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        KatalogGruppeListAdapter.ViewHolder holder;
+        AdapterKatalogGruppeList.ViewHolder holder;
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.activity_katalog, null);
-            holder = new KatalogGruppeListAdapter.ViewHolder();
+            holder = new AdapterKatalogGruppeList.ViewHolder();
             holder.grupLeftView = (ImageView) convertView.findViewById(R.id.imageView_left);
             holder.grupMidView = (ImageView) convertView.findViewById(R.id.imageView_mid);
             holder.grupRightView = (ImageView) convertView.findViewById(R.id.imageView_right);
             convertView.setTag(holder);
         } else {
-            holder = (KatalogGruppeListAdapter.ViewHolder) convertView.getTag();
+            holder = (AdapterKatalogGruppeList.ViewHolder) convertView.getTag();
         }
 
         String katGruppeLeft = this.listData.get(position);
