@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,12 +61,18 @@ public class UtilDaten {
     public static String getFromServer(String url) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         java.net.URL _url = new URL(url);
+        Log.d(TAG, "##getFromServer 64: " + url);
         HttpURLConnection httpURLConnection = (HttpURLConnection) _url.openConnection();
-        final int responseCode = httpURLConnection.getResponseCode();
-        Log.d(TAG, "getFromServer: " + URL+KEY);
+        Log.d(TAG, "##getFromServer 66: " + httpURLConnection.toString());
+//        final int responseCode = httpURLConnection.getResponseCode();
+        Log.d(TAG, "##getFromServer 68: " + URL);
 
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+//        if (responseCode == HttpURLConnection.HTTP_OK) {
+        if(true){
+            Log.d(TAG, "##getFromServer 72: ");
+            InputStreamReader streamReader = new InputStreamReader(httpURLConnection.getInputStream());
+            Log.d(TAG, "##getFromServer 74: " + streamReader.toString());
+            BufferedReader bufferedReader = new BufferedReader(streamReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
@@ -73,30 +80,69 @@ public class UtilDaten {
             bufferedReader.close();
         }
         httpURLConnection.disconnect();
-        Log.d(TAG, "getFromServer: " + stringBuilder.toString());
+        Log.d(TAG, "##getFromServer: " + stringBuilder.toString());
         return stringBuilder.toString();
     }
 
     public static TblKatalog[] getKatalog() throws JSONException, IOException {
-        String kapitel = null;
-        String imgName = null;
-        String katGrupText = null;
-        int von = 0;
-        int bis = 0;
+
         TblKatalog[] ergKat = null;
 
         JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + ""));
 
-        Log.d(TAG, "getKatalog: " + jsonObject.toString());
+
+        Log.d(TAG, "##getKatalog: " + jsonObject.toString());
 
 
         return ergKat;
     }
 
-    public static TblKatalogGruppe[] getKapitel(String para) throws JSONException, IOException {
+    public static TblKatalogGruppe[] get_Kapitel(String para) throws JSONException, IOException {
 
-        JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + para));
-        return null;
+        Log.d(TAG, "##get_Kapitel: " + para);
+        Log.d(TAG, "##get_Kapitel: " + R.string.json);
+        JSONArray jsonArray = new JSONArray(getFromServer("http://www.arndt-tool.de/app/php/json.php" + para));
+        TblKatalogGruppe[] katGruppe = new TblKatalogGruppe[jsonArray.length()];
+
+        Log.d(TAG, "##getKapitel: " + jsonArray.toString());
+
+        for(int i = 0; i < jsonArray.length(); i++) {
+            Log.d(TAG, "##getKapitel: " + jsonArray.length());
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            katGruppe[i] = new TblKatalogGruppe(
+                    jsonObject.has(SPRACHE) ? jsonObject.getString(SPRACHE) : "D",
+                    jsonObject.has(KUERZEL) ? jsonObject.getString(KUERZEL) : "",
+                    jsonObject.has(GRUPPE) ? jsonObject.getString(GRUPPE) : "",
+                    jsonObject.has(TEXT) ? jsonObject.getString(TEXT) : "",
+                    jsonObject.has(ZUSATZ) ? jsonObject.getString(ZUSATZ) : "",
+                    jsonObject.has(UEBERSETZUNG) ? jsonObject.getString(UEBERSETZUNG) : "",
+                    jsonObject.has(PHP_DATEI) ? jsonObject.getString(PHP_DATEI) : "",
+                    jsonObject.has(SYMBOL_GRAFIK_1) ? jsonObject.getString(SYMBOL_GRAFIK_1) : "",
+                    jsonObject.has(SYMBOL_GRAFIK_2) ? jsonObject.getString(SYMBOL_GRAFIK_2) : "",
+                    jsonObject.has(SYMBOL_GRAFIK_3) ? jsonObject.getString(SYMBOL_GRAFIK_3) : "",
+                    jsonObject.has(SYMBOL_GRAFIK_4) ? jsonObject.getString(SYMBOL_GRAFIK_4) : "",
+                    jsonObject.has(MASSEINHEIT) ? jsonObject.getString(MASSEINHEIT) : "",
+                    jsonObject.has(ARTIKEL_ZEILE) ? jsonObject.getString(ARTIKEL_ZEILE) : "",
+                    jsonObject.has(KENN_ART_2) ? jsonObject.getString(KENN_ART_2) : "",
+                    jsonObject.has(AUSFART1) ? jsonObject.getString(AUSFART1) : "",
+                    jsonObject.has(AUSFART2) ? jsonObject.getString(AUSFART2) : "",
+                    jsonObject.has(NOART1) ? jsonObject.getString(NOART1) : "",
+                    jsonObject.has(NOART2) ? jsonObject.getString(NOART2) : "",
+                    jsonObject.has(SB) ? jsonObject.getString(SB) : "",
+                    jsonObject.has(STUECKLISTE) ? jsonObject.getString(STUECKLISTE) : "",
+                    jsonObject.has(GRAFIK2) ? jsonObject.getString(GRAFIK2) : "",
+                    jsonObject.has(ZUSTEXT) ? jsonObject.getString(ZUSTEXT) : "",
+                    jsonObject.has(NEUHEIT) ? jsonObject.getString(NEUHEIT) : "",
+                    jsonObject.has(MOAKTION) ? jsonObject.getString(MOAKTION) : "",
+                    jsonObject.has(SCHALTER) ? jsonObject.getString(SCHALTER) : "",
+                    jsonObject.has(SORT) ? jsonObject.getString(SORT) : "");
+
+            Log.d(TAG, "##getKapitel: " + katGruppe[i].toString());
+            // ToDo Kapitel-Daten in SQLite ablegen
+        }
+
+        return katGruppe;
 
     }
 
@@ -104,6 +150,8 @@ public class UtilDaten {
 
         // ToDo TblArtikel abrufen und zu Anzeige bereit stellen
         JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + para));
+
+        // ToDo Artikel-Daten in SQLite ablegen
         return null;
 
     }
@@ -112,6 +160,8 @@ public class UtilDaten {
 
         // ToDo Stückliste abrufen und zur Anzeige bereit stellen
         JSONObject jsonObject = new JSONObject(getFromServer(R.string.json + para));
+
+        // ToDo Stücklisten-Daten in SQLite ablegen
         return null;
 
     }
@@ -124,6 +174,8 @@ public class UtilDaten {
         Bitmap bmp = BitmapFactory.decodeStream(httpURLConnection.getInputStream());
         httpURLConnection.disconnect();
         return bmp;
+
+        // ToDo wenn Lokal gesetzt, Grafik im mipmap speichern
     }
 
 }

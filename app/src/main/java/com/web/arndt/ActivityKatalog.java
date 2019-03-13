@@ -1,5 +1,6 @@
 package com.web.arndt;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -40,104 +41,60 @@ public class ActivityKatalog extends AppCompatActivity {
     }
 
     UtilDaten holeKapitel = new UtilDaten();
+    //ToDo Anzeige der Katalogkapitel dynamisch
+
     String para = "";
 
-    public void onClickKat01(View view) {
+    public void onClick(View view) {
+        Intent intent = new Intent(this, ActivitySucherg.class);
 
         switch (view.getId()) {
             case R.id.imgKat01:
-                Log.d(TAG, "onClick: TblKatalog 1 gewählt");
-                para = "?kat=01";
+                Log.d(TAG, "##onClick: TblKatalog 1 gewählt");
+                intent.putExtra("para","?kat=01");
                 break;
             case R.id.imgKat02:
-                Log.d(TAG, "onClick: TblKatalog 2 gewählt");
-                para = "?kat=02";
+                Log.d(TAG, "##onClick: TblKatalog 2 gewählt");
+                intent.putExtra("para","?kat=02");
                 break;
             case R.id.imgKat03:
-                Log.d(TAG, "onClick: TblKatalog 3 gewählt");
-                para = "?kat=03";
+                Log.d(TAG, "##onClick: TblKatalog 3 gewählt");
+                intent.putExtra("para","?kat=03");
                 break;
             case R.id.imgKat04:
-                Log.d(TAG, "onClick: TblKatalog 4 gewählt");
-                para = "?kat=04";
+                Log.d(TAG, "##onClick: TblKatalog 4 gewählt");
+                intent.putExtra("para","?kat=04");
                 break;
             case R.id.imgKat05:
-                Log.d(TAG, "onClick: TblKatalog 5 gewählt");
-                para = "?kat=05";
+                Log.d(TAG, "##onClick: TblKatalog 5 gewählt");
+                intent.putExtra("para","?kat=05");
                 break;
             case R.id.imgKat06:
-                Log.d(TAG, "onClick: TblKatalog 6 gewählt");
-                para = "?kat=06";
+                Log.d(TAG, "##onClick: TblKatalog 6 gewählt");
+                intent.putExtra("para","?kat=06");
                 break;
             case R.id.imgKat07:
-                Log.d(TAG, "onClick: TblKatalog 7 gewählt");
-                para = "?kat=07";
+                Log.d(TAG, "##onClick: TblKatalog 7 gewählt");
+                intent.putExtra("para","?kat=07");
                 break;
             case R.id.imgKat08:
-                Log.d(TAG, "onClick: TblKatalog 8 gewählt");
-                para = "?kat=08";
+                Log.d(TAG, "##onClick: TblKatalog 8 gewählt");
+                intent.putExtra("para","?kat=08");
                 break;
             case R.id.imgKat09:
-                Log.d(TAG, "onClick: TblKatalog 9 gewählt");
-                para = "?kat=09";
+                Log.d(TAG, "##onClick: TblKatalog 9 gewählt");
+                intent.putExtra("para","?kat=09");
                 break;
             case R.id.imgKat10:
-                Log.d(TAG, "onClick: TblKatalog 10 gewählt");
-                para = "?kat=10";
+                Log.d(TAG, "##onClick: TblKatalog 10 gewählt");
+                intent.putExtra("para","?kat=10");
                 break;
             default:
-                Log.d(TAG, "onClick: Leider daneben");
-                break;
+                Log.d(TAG, "##onClick: Leider daneben");
+                return;
         }
+        startActivity(intent);
 
-        try {
-            holeKapitel.getKapitel(para);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static class HoleDatenTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            final String baseUrl = "";
-            final String requestUrl = baseUrl + strings[0];
-            Log.d(TAG, "##doInBackground: " + requestUrl);
-            StringBuilder result = new StringBuilder();
-            URL url = null;
-
-            try {
-                url = new URL(requestUrl);
-            } catch (MalformedURLException e) {
-                Log.e(TAG, "", e);
-            }
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-
-            } catch (IOException e) {
-
-            }
-            Log.d(TAG, "##doInBackground: " + result.toString());
-            return result.toString();
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        protected void onPostExecute(String[] strings) {
-            if (strings != null) {
-                Log.d(TAG, "gelesene Daten: " + strings.toString());
-            }
-        }
-
-
-    }
 }

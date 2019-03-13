@@ -18,15 +18,8 @@
         <activity android:name=".ActivitySucherg"></activity>
         <activity android:name=".ActivityArtikel" />
         <activity
-            android:name=".ActivityLogin"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".ActivityKatalog"
             android:label="@string/title_activity_katalog"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>

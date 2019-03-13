@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new FragmentKontakt();
                 break;
             case R.id.nav_login:
-                intent = new Intent(this,ActivityLogin.class);
+                //intent = new Intent(this,ActivityLogin.class);
                 break;
             case R.id.nav_map:
                 fragment = new FragmentMap();
