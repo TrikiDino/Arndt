@@ -14,4 +14,20 @@ public class TblArtikel {
     private String Beschaffung;
     private String VerpackEinhText;
     private double GroesseINCHdez;
+
+    public TblArtikel(int teile, String warengruppe, String abmessung, String mass, String artikelnummer,
+                      double gewicht, String gewichtEinh, String groesseINCH, String beschaffung,
+                      String verpackEinhText, double groesseINCHdez) {
+        Teile = teile;
+        Warengruppe = warengruppe;
+        Abmessung = abmessung;
+        Mass = mass;
+        Artikelnummer = artikelnummer;
+        Gewicht = gewicht;
+        GewichtEinh = gewichtEinh;
+        GroesseINCH = groesseINCH;
+        Beschaffung = beschaffung;
+        VerpackEinhText = verpackEinhText;
+        GroesseINCHdez = groesseINCHdez;
+    }
 }

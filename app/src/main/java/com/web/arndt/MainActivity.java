@@ -14,8 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
-                R.string.nav_open_drawer,R.string.nav_close_drawer);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.nav_open_drawer, R.string.nav_close_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -36,24 +36,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Fragment fragment = new FragmentStart();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.content_frame,fragment);
+        transaction.add(R.id.content_frame, fragment);
         transaction.commit();
 
-
-        TblKatalog[] katalog = new TblKatalog[9];
-
-        for(int i = 0;i<9;i++){
-            //katalog[i] = "katalog0" + (i+1) + ".png";
-        }
-
-
-        // android.R.layout.simple_list_item_1 is a constant predefined layout of Android.
-        // used to create a ListView with simple ListItem (Only one TextView).
-
-        ArrayAdapter<TblKatalog> arrayAdapter
-                = new ArrayAdapter<TblKatalog>(this, android.R.layout.simple_list_item_1 , katalog);
-
-        //listView.setAdapter(arrayAdapter);
     }
 
     @Override
@@ -79,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
 
-        if(fragment != null){
+        if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame,fragment);
+            ft.replace(R.id.content_frame, fragment);
             ft.commit();
         } else {
             startActivity(intent);
@@ -93,11 +78,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-
-        protected void onProgressUpdate(Integer... values) {
-            //Toast.makeText(this, values[0] + " von " + values[1] + " geladen", Toast.LENGTH_SHORT).show();
-        }
-
-    }
+}
 
 
