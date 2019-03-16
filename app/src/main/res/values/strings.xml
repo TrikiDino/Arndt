@@ -25,14 +25,16 @@
     <string name="kneu">Neuheiten 2019</string>
     <string name="kaktion">Aktuelle Monatsaktion</string>
     <string name="suchen">nach Artikel suchen</string>
-    <string name="title_activity_main2">Main2Activity</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="nav_header_title">Hans Anrdt GmbH</string>
+    <string name="nav_header_subtitle">info@arndt-tool.de</string>
+    <string name="nav_header_desc">Navigation</string>
+
     <string name="action_settings">Settings</string>
-    <string name="title_activity_katalog">KatalogActivity</string>
+    <string name="title_activity_katalog">Katalogübersicht</string>
 
     <string name="json">http://www.arndt-tool.de/app/php/json.php</string>
     <string name="imageWeb">http://www.arndt-tool.de/app/img/</string>
