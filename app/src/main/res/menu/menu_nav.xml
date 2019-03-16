@@ -4,18 +4,22 @@
 
     <group android:checkableBehavior="single">
 
+        <item
+            android:id="@+id/nav_katalog"
+            android:checked="true"
+            android:title="@string/katalog" />
         <item android:id="@+id/nav_login"
             android:title="@string/login"/>
 
         <item android:id="@+id/nav_kontakt"
             android:title="@string/kontakt"/>
 
+        <item
+            android:id="@+id/nav_einstellung"
+            android:title="@string/einstellung" />
         <item android:id="@+id/nav_map"
             android:title="@string/map"/>
 
-        <item android:id="@+id/nav_katalog"
-            android:title="@string/katalog"
-            android:checked="true"/>
         <item
             android:id="@+id/app_bar_search"
             android:icon="@drawable/ic_search_black_24dp"

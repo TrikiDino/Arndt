@@ -1,17 +1,19 @@
 <resources>
-    <string name="app_titel">Hans Arndt GmbH</string>
-    <string name="title_activity_katalog">Katalogübersicht</string>
-    <string name="title_activity_sucherg">Artikelauswahl</string>
-    <string name="title_activity_artikel">Artikeldetails</string>
+    <string name="app_titel">   Hans Arndt GmbH</string>
+    <string name="title_activity_katalog">   Katalogübersicht</string>
+    <string name="title_activity_sucherg">   Artikelauswahl</string>
+    <string name="title_activity_artikel">   Artikeldetails</string>
 
-    <string name="app_name">Hans Arndt GmbH</string>
+    <string name="app_name">   Hans Arndt GmbH</string>
     <string name="artikel">Einzelansicht Artikel</string>
-    <string name="map">Hier sind wir zu finden</string>
+    <string name="map">Hier sind wir </string>
     <string name="sucherg">Das Ergebnis ihrer Suche</string>
+    <string name="suchen">Artikel suchen</string>
+    <string name="einstellung">Einstellungen</string>
 
-    <string name="login">"Loggen Sie sich mit \nihrer Kundennummer ein"</string>
-    <string name="kontakt">"Nehmen Sie Kontakt \nzu uns auf"</string>
-    <string name="katalog">"Blättern Sie durch \nunsere Artikel"</string>
+    <string name="login">Kundenlogin</string>
+    <string name="kontakt">Kontakt</string>
+    <string name="katalog">Unsere Artikel</string>
 
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
@@ -28,7 +30,6 @@
     <string name="k10">Kästen und Schraubenschlüssel</string>
     <string name="kneu">Neuheiten 2019</string>
     <string name="kaktion">Aktuelle Monatsaktion</string>
-    <string name="suchen">nach Artikel suchen</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
