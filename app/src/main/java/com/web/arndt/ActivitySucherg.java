@@ -1,69 +1,92 @@
 package com.web.arndt;
 
-import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 // ToDo Anzeige des Suchergebnisses und Auswählmöglichkeit
-// händelt die Anzeige eines Suchergebnisses oder eines Katalogkapitels
+// Anzeige von Kataloggruppe und Suchergebnis
 
 public class ActivitySucherg extends AppCompatActivity {
 
+    // TblKatalog Kapitel Verzeichnis
+    private static final String SPRACHE = "Sprache";
+    private static final String KUERZEL = "Kuerzel";
+    private static final String GRUPPE = "Gruppe";
+    private static final String TEXT = "Text";
+    private static final String ZUSATZ = "Zusatz";
+    private static final String UEBERSETZUNG = "Uebersetzung";
+    private static final String PHP_DATEI = "PHP_Datei";
+    private static final String SYMBOL_GRAFIK_1 = "Symbol_Grafik_1";
+    private static final String SYMBOL_GRAFIK_2 = "Symbol_Grafik_2";
+    private static final String SYMBOL_GRAFIK_3 = "Symbol_Grafik_3";
+    private static final String SYMBOL_GRAFIK_4 = "Symbol_Grafik_4";
+    private static final String MASSEINHEIT = "Masseinheit";
+    private static final String ARTIKEL_ZEILE = "Artikel_Zeile";
+    private static final String KENN_ART_2 = "Kenn_Art_2";
+    private static final String AUSFART1 = "AusfArt1";
+    private static final String AUSFART2 = "AusfArt2";
+    private static final String NOART1 = "NoArt1";
+    private static final String NOART2 = "NoArt2";
+    private static final String SB = "SB";
+    private static final String STUECKLISTE = "TblStueckliste";
+    private static final String GRAFIK2 = "Grafik2";
+    private static final String ZUSTEXT = "zusText";
+    private static final String NEUHEIT = "Neuheit";
+    private static final String MOAKTION = "MoAktion";
+    private static final String SCHALTER = "Schalter";
+    private static final String SORT = "Sort";
+
     private static final String TAG = ActivitySucherg.class.getSimpleName();
+    public String para = "";
+
+    List<TblKatalogGruppe> katGruppe = new ArrayList<TblKatalogGruppe>();
+
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //TODO: Step 4 of 4: Finally call getTag() on the view.
+            // This viewHolder will have all required values.
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            // viewHolder.getItemId();
+            // viewHolder.getItemViewType();
+            // viewHolder.itemView;
+            TblKatalogGruppe thisItem = katGruppe.get(position);
+            Log.d(TAG, "onClick: es wurde Artikel "+ thisItem.getKuerzel() + " geklickt");
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kapitel);
+        setContentView(R.layout.activity_sucherg);
 
-        String para = getIntent().getExtras().getString("para","");
-        Log.d(TAG, "##onCreate: " + para);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        try {
-            TblKatalogGruppe[] katGruppe = UtilDaten.get_Kapitel(para);
-            Log.d(TAG, "##onCreate: " + katGruppe.toString());
-            String t_artikel[] = new String[katGruppe.length];
-            String t_mass[] = new String[katGruppe.length];
-            Integer i_artikel[] = new Integer[katGruppe.length];
-            Integer i_symbol[] = new Integer[katGruppe.length];
+        para = getIntent().getExtras().getString("para", "");
 
-            for(int i = 0;i<katGruppe.length;i++){
-                i_artikel[i] = (Integer) this.getResources().getIdentifier("p"+ katGruppe[i].getKuerzel(),"drawable",this.getPackageName());
-                i_symbol[i] = (Integer) this.getResources().getIdentifier("p"+ katGruppe[i].getSymbol_grafik_1(),"drawable",this.getPackageName());
-                t_artikel[i] = katGruppe[i].getKuerzel();
-                t_mass[i] =katGruppe[i].getMasseinheit();
-            }
-            Log.d(TAG, "##i_artikel: " + i_artikel.toString());
-            Log.d(TAG, "##i_symbol: " + i_symbol.toString());
-            Log.d(TAG, "##t_artikel: " + t_artikel.toString());
-            Log.d(TAG, "##t_mass: " + t_mass.toString());
-
-            RecyclerView recyclerView = (RecyclerView)findViewById(R.id.katGruppe);
-            recyclerView.setHasFixedSize(true);
-
-            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);
-            recyclerView.setLayoutManager(layoutManager);
-            ArrayList<CreateList> katalogGruppes = prepareData(t_artikel, t_mass, i_artikel, i_symbol);
-            AdapterKatalogGruppeList adapter = new AdapterKatalogGruppeList(getApplicationContext(), katalogGruppes);
-            recyclerView.setAdapter(adapter);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        new get_Kapitel().execute();
 
     }
+
     public class CreateList {
 
         private String t_artikel;
@@ -117,5 +140,120 @@ public class ActivitySucherg extends AppCompatActivity {
         }
         return imgArtikel;
     }
-}
 
+    private class get_Kapitel extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String url = "http://www.arndt-tool.de/app/php/json.php" + para;
+                Log.d(TAG, "##doInBackground 127: " + url);
+                JSONArray jsonArray = new JSONArray(UtilDaten.getFromServer(url));
+
+                Log.d(TAG, "##getKapitel 130: " + jsonArray.toString());
+
+                TblKatalogGruppe gruppe;
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    Log.d(TAG, "##getKapitel 133: " + jsonArray.length());
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    gruppe = new TblKatalogGruppe(
+                            jsonObject.has(SPRACHE) ? jsonObject.getString(SPRACHE) : "D",
+                            jsonObject.has(KUERZEL) ? jsonObject.getString(KUERZEL) : "",
+                            jsonObject.has(GRUPPE) ? jsonObject.getString(GRUPPE) : "",
+                            jsonObject.has(TEXT) ? jsonObject.getString(TEXT) : "",
+                            jsonObject.has(ZUSATZ) ? jsonObject.getString(ZUSATZ) : "",
+                            jsonObject.has(UEBERSETZUNG) ? jsonObject.getString(UEBERSETZUNG) : "",
+                            jsonObject.has(PHP_DATEI) ? jsonObject.getString(PHP_DATEI) : "",
+                            jsonObject.has(SYMBOL_GRAFIK_1) ? jsonObject.getString(SYMBOL_GRAFIK_1) : "",
+                            jsonObject.has(SYMBOL_GRAFIK_2) ? jsonObject.getString(SYMBOL_GRAFIK_2) : "",
+                            jsonObject.has(SYMBOL_GRAFIK_3) ? jsonObject.getString(SYMBOL_GRAFIK_3) : "",
+                            jsonObject.has(SYMBOL_GRAFIK_4) ? jsonObject.getString(SYMBOL_GRAFIK_4) : "",
+                            jsonObject.has(MASSEINHEIT) ? jsonObject.getString(MASSEINHEIT) : "",
+                            jsonObject.has(ARTIKEL_ZEILE) ? jsonObject.getString(ARTIKEL_ZEILE) : "",
+                            jsonObject.has(KENN_ART_2) ? jsonObject.getString(KENN_ART_2) : "",
+                            jsonObject.has(AUSFART1) ? jsonObject.getString(AUSFART1) : "",
+                            jsonObject.has(AUSFART2) ? jsonObject.getString(AUSFART2) : "",
+                            jsonObject.has(NOART1) ? jsonObject.getString(NOART1) : "",
+                            jsonObject.has(NOART2) ? jsonObject.getString(NOART2) : "",
+                            jsonObject.has(SB) ? jsonObject.getString(SB) : "",
+                            jsonObject.has(STUECKLISTE) ? jsonObject.getString(STUECKLISTE) : "",
+                            jsonObject.has(GRAFIK2) ? jsonObject.getString(GRAFIK2) : "",
+                            jsonObject.has(ZUSTEXT) ? jsonObject.getString(ZUSTEXT) : "",
+                            jsonObject.has(NEUHEIT) ? jsonObject.getString(NEUHEIT) : "",
+                            jsonObject.has(MOAKTION) ? jsonObject.getString(MOAKTION) : "",
+                            jsonObject.has(SCHALTER) ? jsonObject.getString(SCHALTER) : "",
+                            jsonObject.has(SORT) ? jsonObject.getString(SORT) : "");
+
+                    Log.d(TAG, "##getKapitel 164: " + gruppe.toString());
+
+                    katGruppe.add(gruppe);
+                    // ToDo Kapitel-Daten in SQLite oder Firebase ablegen, evtl Firebase <=> mySQL Verbindung
+                }
+                return "";
+            } catch (IOException e) {
+                Log.e(TAG, "doInBackground: ", e);
+            } catch (JSONException e) {
+                Log.e(TAG, "doInBackground: ", e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            Log.d(TAG, "##onCreate: " + katGruppe.toString());
+            String t_artikel[] = new String[katGruppe.size()];
+            String t_mass[] = new String[katGruppe.size()];
+            Integer i_artikel[] = new Integer[katGruppe.size()];
+            Integer i_symbol[] = new Integer[katGruppe.size()];
+            String ni_artikel[] = new String[katGruppe.size()];
+            String ni_symbol[] = new String[katGruppe.size()];
+
+            int i = 0;
+            for(TblKatalogGruppe gruppe : katGruppe){
+
+                ni_artikel[i] = ("p"+ gruppe.getKuerzel())
+                        .replace("-","_")
+                        .replace("_mm","")
+                        .replace("_inch","").trim();
+
+                ni_symbol[i] = ("s"+ gruppe.getSymbol_grafik_1())
+                        .replace("-","_").toLowerCase().trim();
+
+                i_artikel[i] = getResources().getIdentifier(ni_artikel[i],
+                        "mipmap",getPackageName());
+                i_symbol[i] = getResources().getIdentifier(ni_symbol[i],
+                        "drawable",getPackageName());
+
+                t_artikel[i] = gruppe.getKuerzel().replace("_mm","")
+                        .replace("_inch","").toUpperCase();
+                t_mass[i] = gruppe.getMasseinheit();
+                
+                i++;
+            }
+
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rcKatGruppe);
+            recyclerView.setHasFixedSize(true);
+
+            RecyclerView.LayoutManager layoutManager;
+            int orientation = getResources().getConfiguration().orientation;
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                layoutManager = new GridLayoutManager(getApplicationContext(),5);// In landscape
+            } else {
+                layoutManager = new GridLayoutManager(getApplicationContext(),3);// In portrait
+            }
+            recyclerView.setLayoutManager(layoutManager);
+            ArrayList<CreateList> katalogGruppes = prepareData(t_artikel, t_mass, i_artikel, i_symbol);
+            AdapterKatalogGruppeList adapter = new AdapterKatalogGruppeList(getApplicationContext(), katalogGruppes);
+            recyclerView.setAdapter(adapter);
+
+            //TODO: Step 1 of 4: Create and set OnItemClickListener to the adapter.
+            adapter.setOnItemClickListener(onItemClickListener);
+
+
+        }
+    }
+
+
+}

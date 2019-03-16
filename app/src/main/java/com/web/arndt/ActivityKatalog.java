@@ -45,7 +45,7 @@ public class ActivityKatalog extends AppCompatActivity {
 
     String para = "";
 
-    public void onClick(View view) {
+    public void onClickKat01(View view) {
         Intent intent = new Intent(this, ActivitySucherg.class);
 
         switch (view.getId()) {

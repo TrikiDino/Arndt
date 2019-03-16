@@ -5,18 +5,12 @@
     <string name="map">Hier sind wir zu finden</string>
     <string name="sucherg">Das Ergebnis ihrer Suche</string>
 
-    <string name="login">Loggen Sie sich mit \nihrer Kundennummer ein</string>
-    <string name="kontakt">Nehmen Sie Kontakt \nzu uns auf</string>
-    <string name="katalog">Blättern Sie durch \nunsere Artikel</string>
+    <string name="login">"Loggen Sie sich mit \nihrer Kundennummer ein"</string>
+    <string name="kontakt">"Nehmen Sie Kontakt \nzu uns auf"</string>
+    <string name="katalog">"Blättern Sie durch \nunsere Artikel"</string>
 
     <string name="nav_open_drawer">Open navigation drawer</string>
     <string name="nav_close_drawer">Close navigation drawer</string>
-
-    <string name="txt_send_items">sent items</string>
-    <string name="txt_trash">trash</string>
-    <string name="txt_inbox">Inbox</string>
-    <string name="txt_draft">draft</string>
-    <string name="spot_catchat_com">spot@catchat.com</string>
 
     <string name="k01">Sechskant-Winkelschraubendreher</string>
     <string name="k02">Sechskant-Winkelschraubendreher, lange Ausführung</string>

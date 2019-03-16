@@ -54,10 +54,6 @@ public class UtilDaten {
     private static final String SCHALTER = "Schalter";
     private static final String SORT = "Sort";
 
-    // TblArtikel
-
-    // Stückliste
-
     public static String getFromServer(String url) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         java.net.URL _url = new URL(url);
