@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,7 +17,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 // ToDo Anzeige des Suchergebnisses und Auswählmöglichkeit
@@ -68,7 +68,7 @@ public class ActivitySucherg extends AppCompatActivity {
             // viewHolder.getItemViewType();
             // viewHolder.itemView;
             TblKatalogGruppe thisItem = katGruppe.get(position);
-            Log.d(TAG, "onClick: es wurde Artikel "+ thisItem.getKuerzel() + " geklickt");
+            Log.d(TAG, "##onClick: es wurde Artikel "+ thisItem.getKuerzel() + " geklickt");
         }
     };
 
@@ -147,15 +147,11 @@ public class ActivitySucherg extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String url = "http://www.arndt-tool.de/app/php/json.php" + para;
-                Log.d(TAG, "##doInBackground 127: " + url);
                 JSONArray jsonArray = new JSONArray(UtilDaten.getFromServer(url));
-
-                Log.d(TAG, "##getKapitel 130: " + jsonArray.toString());
 
                 TblKatalogGruppe gruppe;
 
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    Log.d(TAG, "##getKapitel 133: " + jsonArray.length());
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                     gruppe = new TblKatalogGruppe(
@@ -245,10 +241,11 @@ public class ActivitySucherg extends AppCompatActivity {
             }
             recyclerView.setLayoutManager(layoutManager);
             ArrayList<CreateList> katalogGruppes = prepareData(t_artikel, t_mass, i_artikel, i_symbol);
-            AdapterKatalogGruppeList adapter = new AdapterKatalogGruppeList(getApplicationContext(), katalogGruppes);
+            AdapterSucherg adapter = new AdapterSucherg(getApplicationContext(), katalogGruppes);
             recyclerView.setAdapter(adapter);
 
             //TODO: Step 1 of 4: Create and set OnItemClickListener to the adapter.
+            Log.d(TAG, "##onPostExecute: Step 1 of 4: Create and set OnItemClickListener to the adapter.");
             adapter.setOnItemClickListener(onItemClickListener);
 
 

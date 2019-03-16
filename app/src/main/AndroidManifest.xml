@@ -15,13 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivitySucherg"></activity>
-        <activity android:name=".ActivityArtikel" />
+        <activity
+            android:name=".ActivitySucherg"
+            android:label="@string/title_activity_sucherg"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ActivityArtikel"
+            android:label="@string/title_activity_artikel"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".ActivityKatalog"
             android:label="@string/title_activity_katalog"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

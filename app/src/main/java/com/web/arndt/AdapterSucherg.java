@@ -11,27 +11,27 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AdapterKatalogGruppeList extends RecyclerView.Adapter<AdapterKatalogGruppeList.ViewHolder> {
+public class AdapterSucherg extends RecyclerView.Adapter<AdapterSucherg.ViewHolder> {
+
+    private static final String TAG = AdapterSucherg.class.getSimpleName();
 
     private ArrayList<ActivitySucherg.CreateList> kapitelList;
     private Context context;
     private View.OnClickListener mOnItemClickListener;
 
-    private static final String TAG = AdapterKatalogGruppeList.class.getSimpleName();
-
-    public AdapterKatalogGruppeList(Context context, ArrayList<ActivitySucherg.CreateList> galleryList) {
+    public AdapterSucherg(Context context, ArrayList<ActivitySucherg.CreateList> galleryList) {
         this.kapitelList = galleryList;
         this.context = context;
     }
 
     @Override
-    public AdapterKatalogGruppeList.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public AdapterSucherg.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell_sucherg, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(AdapterKatalogGruppeList.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(AdapterSucherg.ViewHolder viewHolder, int i) {
         viewHolder.tvArt.setText(kapitelList.get(i).getT_artikel());
         viewHolder.tvMass.setText(kapitelList.get(i).getT_mass());
         viewHolder.ivArt.setImageResource((kapitelList.get(i).getI_artikel()));
@@ -41,32 +41,32 @@ public class AdapterKatalogGruppeList extends RecyclerView.Adapter<AdapterKatalo
     @Override
     public int getItemCount() {
 
-        Log.d(TAG, "##getItemCount: " + kapitelList.size());
         return kapitelList.size();
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvArt;
-        private TextView tvMass;
-        private ImageView ivArt;
-        private ImageView ivSymbol;
-        public ViewHolder(View view) {
-            super(view);
-
-            tvArt = (TextView) view.findViewById(R.id.tvArt);
-            tvMass = (TextView) view.findViewById(R.id.tvMass);
-            ivArt = (ImageView) view.findViewById(R.id.ivArt);
-            ivSymbol = (ImageView) view.findViewById(R.id.ivSymbol);
-        }
-    }
+//    public class ViewHolder extends RecyclerView.ViewHolder{
+//        private TextView tvArt;
+//        private TextView tvMass;
+//        private ImageView ivArt;
+//        private ImageView ivSymbol;
+//        public ViewHolder(View view) {
+//            super(view);
+//
+//            tvArt = (TextView) view.findViewById(R.id.tvArt);
+//            tvMass = (TextView) view.findViewById(R.id.tvMass);
+//            ivArt = (ImageView) view.findViewById(R.id.ivArt);
+//            ivSymbol = (ImageView) view.findViewById(R.id.ivSymbol);
+//        }
+//    }
 
     //TODO: Step 2 of 4: Assign itemClickListener to your local View.OnClickListener variable
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
+        Log.d(TAG, "##setOnItemClickListener: Step 2 of 4: Assign itemClickListener to your local View.OnClickListener variable");
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvArt;
         public TextView tvMass;
         public ImageView lo;
@@ -76,7 +76,7 @@ public class AdapterKatalogGruppeList extends RecyclerView.Adapter<AdapterKatalo
         public ImageView ivArt;
         public ImageView ivSymbol;
 
-        public MyViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             tvArt = itemView.findViewById(R.id.tvArt);
             tvMass = itemView.findViewById(R.id.tvMass);
@@ -93,7 +93,9 @@ public class AdapterKatalogGruppeList extends RecyclerView.Adapter<AdapterKatalo
             // and later differentiate those clicks using view's id.
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
+            Log.d(TAG, "##ViewHolder: Step 3 of 4: setTag() as current view holder along with");
         }
     }
 
 }
+
