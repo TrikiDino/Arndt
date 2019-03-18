@@ -45,25 +45,9 @@ public class AdapterSucherg extends RecyclerView.Adapter<AdapterSucherg.ViewHold
 
     }
 
-//    public class ViewHolder extends RecyclerView.ViewHolder{
-//        private TextView tvArt;
-//        private TextView tvMass;
-//        private ImageView ivArt;
-//        private ImageView ivSymbol;
-//        public ViewHolder(View view) {
-//            super(view);
-//
-//            tvArt = (TextView) view.findViewById(R.id.tvArt);
-//            tvMass = (TextView) view.findViewById(R.id.tvMass);
-//            ivArt = (ImageView) view.findViewById(R.id.ivArt);
-//            ivSymbol = (ImageView) view.findViewById(R.id.ivSymbol);
-//        }
-//    }
 
-    //TODO: Step 2 of 4: Assign itemClickListener to your local View.OnClickListener variable
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
-        Log.d(TAG, "##setOnItemClickListener: Step 2 of 4: Assign itemClickListener to your local View.OnClickListener variable");
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -87,13 +71,8 @@ public class AdapterSucherg extends RecyclerView.Adapter<AdapterSucherg.ViewHold
             ivArt = itemView.findViewById(R.id.ivArt);
             ivSymbol = itemView.findViewById(R.id.ivSymbol);
 
-            //TODO: Step 3 of 4: setTag() as current view holder along with
-            // setOnClickListener() as your local View.OnClickListener variable.
-            // You can set the same mOnItemClickListener on multiple views if required
-            // and later differentiate those clicks using view's id.
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
-            Log.d(TAG, "##ViewHolder: Step 3 of 4: setTag() as current view holder along with");
         }
     }
 

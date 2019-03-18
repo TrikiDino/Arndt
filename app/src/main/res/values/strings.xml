@@ -3,6 +3,8 @@
     <string name="title_activity_katalog">   Katalogübersicht</string>
     <string name="title_activity_sucherg">   Artikelauswahl</string>
     <string name="title_activity_artikel">   Artikeldetails</string>
+    <string name="title_activity_search">   Artikelsuche</string>
+    <string name="title_activity_maps">   </string>
 
     <string name="app_name">   Hans Arndt GmbH</string>
     <string name="artikel">Einzelansicht Artikel</string>
@@ -50,5 +52,7 @@
     <string name="action_sign_in_short">Login</string>
     <string name="error_invalid_email">Diese Kundennummer ist nicht bekannt</string>
     <string name="error_incorrect_password">Das Password ist falsch.</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB7D-sK2DlZbeZQAmKwoNBR1TSuXUfkxOA</string>
 
 </resources>

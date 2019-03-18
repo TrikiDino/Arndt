@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +19,7 @@ public class ActivityKatalog extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_katalog);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -95,38 +93,7 @@ public class ActivityKatalog extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        Fragment fragment = null;
-        Intent intent = null;
-        switch (id) {
-            case R.id.nav_katalog:
-                intent = new Intent(this, ActivityKatalog.class);
-                break;
-            case R.id.nav_kontakt:
-                fragment = new FragmentKontakt();
-                break;
-            case R.id.nav_login:
-                //intent = new Intent(this,ActivityLogin.class);
-                break;
-            case R.id.nav_map:
-                fragment = new FragmentMap();
-                break;
-            default:
-                intent = new Intent(this, ActivityKatalog.class);
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
-        } else {
-            startActivity(intent);
-        }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_main);
-        drawer.closeDrawer(GravityCompat.START);
-
+        new UtilNav().onNavigation(this, item);
         return true;
     }
 }

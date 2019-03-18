@@ -1,44 +1,73 @@
 package com.web.arndt;
 
-// ToDo Struktur für die Katalogkapitel
+// ToDo Struktur für die Katalogkapitel - OK
 // Die Struktur orientiert sich an der bestehenden Struktur der Warengrppen in der fs_web
 // und lehnt sich an die Struktur des Papierkataloges an
 
-public class TblKatalogGruppe {
-    private String sprache = "Sprache";
-    private String kuerzel = "Kuerzel";
-    private String gruppe = "Gruppe";
-    private String text = "Text";
-    private String zusatz = "Zusatz";
-    private String uebersetzung = "Uebersetzung";
-    private String php_datei = "PHP_Datei";
-    private String symbol_grafik_1 = "Symbol_Grafik_1";
-    private String symbol_grafik_2 = "Symbol_Grafik_2";
-    private String symbol_grafik_3 = "Symbol_Grafik_3";
-    private String symbol_grafik_4 = "Symbol_Grafik_4";
-    private String masseinheit = "Masseinheit";
-    private String artikel_zeile = "Artikel_Zeile";
-    private String kenn_art_2 = "Kenn_Art_2";
-    private String ausfart1 = "AusfArt1";
-    private String ausfart2 = "AusfArt2";
-    private String noart1 = "NoArt1";
-    private String noart2 = "NoArt2";
-    private String sb = "SB";
-    private String stueckliste = "TblStueckliste";
-    private String grafik2 = "Grafik2";
-    private String zustext = "zusText";
-    private String neuheit = "Neuheit";
-    private String moaktion = "MoAktion";
-    private String schalter = "Schalter";
-    private String sort = "Sort";
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class TblKatalogGruppe implements Parcelable {
+    private String sprache;
+    private String kuerzel;
+    private String gruppe;
+    private String text;
+    private String zusatz;
+    private String uebersetzung;
+    private String php_datei;
+    private String symbol_grafik_1;
+    private String symbol_grafik_2;
+    private String symbol_grafik_3;
+    private String symbol_grafik_4;
+    private String masseinheit;
+    private String artikel_zeile;
+    private String kenn_art_2;
+    private String ausfart1;
+    private String ausfart2;
+    private String noart1;
+    private String noart2;
+    private String sb;
+    private String stueckliste;
+    private String grafik2;
+    private String zustext;
+    private String neuheit;
+    private String moaktion;
+    private int schalter;
+
+    public TblKatalogGruppe(Parcel parcel){
+        this.sprache = parcel.readString();
+        this.kuerzel = parcel.readString();
+        this.gruppe = parcel.readString();
+        this.text = parcel.readString();
+        this.zusatz = parcel.readString();
+        this.uebersetzung = parcel.readString();
+        this.php_datei = parcel.readString();
+        this.symbol_grafik_1 = parcel.readString();
+        this.symbol_grafik_2 = parcel.readString();
+        this.symbol_grafik_3 = parcel.readString();
+        this.symbol_grafik_4 = parcel.readString();
+        this.masseinheit = parcel.readString();
+        this.artikel_zeile = parcel.readString();
+        this.kenn_art_2 = parcel.readString();
+        this.ausfart1 = parcel.readString();
+        this.ausfart2 = parcel.readString();
+        this.noart1 = parcel.readString();
+        this.noart2 = parcel.readString();
+        this.sb = parcel.readString();
+        this.stueckliste = parcel.readString();
+        this.grafik2 = parcel.readString();
+        this.zustext = parcel.readString();
+        this.neuheit = parcel.readString();
+        this.moaktion = parcel.readString();
+        this.schalter = parcel.readInt();
+    }
 
     public TblKatalogGruppe(String sprache, String kuerzel, String gruppe, String text, String zusatz,
                             String uebersetzung, String php_datei, String symbol_grafik_1,
                             String symbol_grafik_2, String symbol_grafik_3, String symbol_grafik_4,
                             String masseinheit, String artikel_zeile, String kenn_art_2, String ausfart1,
                             String ausfart2, String noart1, String noart2, String sb, String stueckliste,
-                            String grafik2, String zustext, String neuheit, String moaktion,
-                            String schalter, String sort) {
+                            String grafik2, String zustext, String neuheit, String moaktion, int schalter) {
         this.sprache = sprache;
         this.kuerzel = kuerzel;
         this.gruppe = gruppe;
@@ -64,7 +93,6 @@ public class TblKatalogGruppe {
         this.neuheit = neuheit;
         this.moaktion = moaktion;
         this.schalter = schalter;
-        this.sort = sort;
     }
 
     public String getSprache() {
@@ -163,11 +191,56 @@ public class TblKatalogGruppe {
         return moaktion;
     }
 
-    public String getSchalter() {
+    public int getSchalter() {
         return schalter;
     }
 
-    public String getSort() {
-        return sort;
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(sprache);
+        parcel.writeString(kuerzel);
+        parcel.writeString(gruppe);
+        parcel.writeString(text);
+        parcel.writeString(zusatz);
+        parcel.writeString(uebersetzung);
+        parcel.writeString(php_datei);
+        parcel.writeString(symbol_grafik_1);
+        parcel.writeString(symbol_grafik_2);
+        parcel.writeString(symbol_grafik_3);
+        parcel.writeString(symbol_grafik_4);
+        parcel.writeString(masseinheit);
+        parcel.writeString(artikel_zeile);
+        parcel.writeString(kenn_art_2);
+        parcel.writeString(ausfart1);
+        parcel.writeString(ausfart2);
+        parcel.writeString(noart1);
+        parcel.writeString(noart2);
+        parcel.writeString(sb);
+        parcel.writeString(stueckliste);
+        parcel.writeString(grafik2);
+        parcel.writeString(zustext);
+        parcel.writeString(neuheit);
+        parcel.writeString(moaktion);
+        parcel.writeInt(schalter);
+    }
+
+    public static final Parcelable.Creator<TblKatalogGruppe> CREATOR =
+            new Parcelable.Creator<TblKatalogGruppe>(){
+
+                @Override
+                public TblKatalogGruppe createFromParcel(Parcel source) {
+                    return new TblKatalogGruppe(source);
+                }
+
+                @Override
+                public TblKatalogGruppe[] newArray(int size) {
+                    return new TblKatalogGruppe[size];
+                }
+            };
 }

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+//    ToDo Funktion der onNavigation auslagern, so das redundanter Code vermieden wird
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -49,14 +50,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_katalog:
                 intent = new Intent(this, ActivityKatalog.class);
                 break;
+            case R.id.nav_login:
+//                ToDo Login für Bestandskunden
+                //intent = new Intent(this,ActivityLogin.class);
+                break;
             case R.id.nav_kontakt:
                 fragment = new FragmentKontakt();
                 break;
-            case R.id.nav_login:
-                //intent = new Intent(this,ActivityLogin.class);
-                break;
             case R.id.nav_map:
-                fragment = new FragmentMap();
+                intent = new Intent(this, ActivityMaps.class);
+                break;
+            case R.id.app_bar_search:
+//                ToDo ActivitySearch starten
+                intent = new Intent(this, ActivitySearch.class);
                 break;
             default:
                 intent = new Intent(this, ActivityKatalog.class);

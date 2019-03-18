@@ -16,6 +16,8 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar_main" />
 
+        <!--ToDo auch Katalogübersicht als Recycler-View gestalten-->
+
         <ImageButton
             android:id="@+id/imgKat01"
             style="@android:style/Widget.Holo.Light.ImageButton"

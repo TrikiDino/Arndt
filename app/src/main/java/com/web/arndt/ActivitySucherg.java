@@ -1,14 +1,19 @@
 package com.web.arndt;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import org.json.JSONArray;
@@ -22,7 +27,7 @@ import java.util.List;
 // ToDo Anzeige des Suchergebnisses und Auswählmöglichkeit
 // Anzeige von Kataloggruppe und Suchergebnis
 
-public class ActivitySucherg extends AppCompatActivity {
+public class ActivitySucherg extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // TblKatalog Kapitel Verzeichnis
     private static final String SPRACHE = "Sprache";
@@ -60,15 +65,14 @@ public class ActivitySucherg extends AppCompatActivity {
     private View.OnClickListener onItemClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            //TODO: Step 4 of 4: Finally call getTag() on the view.
-            // This viewHolder will have all required values.
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
-            // viewHolder.getItemId();
-            // viewHolder.getItemViewType();
-            // viewHolder.itemView;
             TblKatalogGruppe thisItem = katGruppe.get(position);
             Log.d(TAG, "##onClick: es wurde Artikel "+ thisItem.getKuerzel() + " geklickt");
+            Intent intArt = new Intent(ActivitySucherg.this, ActivityArtikel.class);
+
+            intArt.putExtra("katalog", thisItem);
+            startActivity(intArt);
         }
     };
 
@@ -81,10 +85,25 @@ public class ActivitySucherg extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        DrawerLayout drawer = findViewById(R.id.drawer_sucherg);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.nav_open_drawer, R.string.nav_close_drawer);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         para = getIntent().getExtras().getString("para", "");
 
         new get_Kapitel().execute();
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        new UtilNav().onNavigation(this, item);
+        return true;
     }
 
     public class CreateList {
@@ -179,8 +198,7 @@ public class ActivitySucherg extends AppCompatActivity {
                             jsonObject.has(ZUSTEXT) ? jsonObject.getString(ZUSTEXT) : "",
                             jsonObject.has(NEUHEIT) ? jsonObject.getString(NEUHEIT) : "",
                             jsonObject.has(MOAKTION) ? jsonObject.getString(MOAKTION) : "",
-                            jsonObject.has(SCHALTER) ? jsonObject.getString(SCHALTER) : "",
-                            jsonObject.has(SORT) ? jsonObject.getString(SORT) : "");
+                            !jsonObject.has(SCHALTER) ? jsonObject.getInt(SCHALTER) : 1);
 
                     Log.d(TAG, "##getKapitel 164: " + gruppe.toString());
 
@@ -244,8 +262,6 @@ public class ActivitySucherg extends AppCompatActivity {
             AdapterSucherg adapter = new AdapterSucherg(getApplicationContext(), katalogGruppes);
             recyclerView.setAdapter(adapter);
 
-            //TODO: Step 1 of 4: Create and set OnItemClickListener to the adapter.
-            Log.d(TAG, "##onPostExecute: Step 1 of 4: Create and set OnItemClickListener to the adapter.");
             adapter.setOnItemClickListener(onItemClickListener);
 
 

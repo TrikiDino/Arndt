@@ -6,6 +6,8 @@
     android:layout_height="70dp"
     android:background="@color/colorPrimary">
 
+    <!--ToDo auch für die Kataloge einzelansichten für eine Recycler-View anlegen-->
+
     <ImageButton
         android:id="@+id/imgKat"
         style="@android:style/Widget.Holo.Light.ImageButton"

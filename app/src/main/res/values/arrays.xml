@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--- Inhalt der DropDown-Listen//MultiAutoCompleteTextView -->
+    <string-array name="mass_array">
+        <item>Alle</item>
+        <item>inch</item>
+        <item>mm</item>
+    </string-array>
+
+     <string-array name="verp_array">
+        <item>Alle</item>
+        <item>einzeln</item>
+        <item>am Ring</item>
+        <item>im Handclip</item>
+         <item>in Kunststoffclip</item>
+        <item>in Tasche</item>
+        <item>in Rolltasche</item>
+        <item>in Sichtverpackung</item>
+         <item>in Box</item>
+        <item>im Werkzeugständer</item>
+    </string-array>
+
+    <string-array name="ausf_array">
+        <item>Alle</item>
+        <item>verchromt</item>
+        <item>schwarz</item>
+        <item>vernickelt</item>
+        <item>brüniert</item>
+        <item>lange Ausführung</item>
+        <item>flexibel</item>
+        <item>PP-Griff</item>
+        <item>magnetisch</item>
+        <item>nicht magnetisch</item>
+    </string-array>
+
+</resources>

@@ -26,6 +26,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/lu" />
 
+    <!--ToDo Hintergrundgrafiken bearbeiten und äußeren weißen Rand auf transparent setzen-->
+
     <ImageView
         android:id="@+id/ro"
         android:layout_width="110dp"

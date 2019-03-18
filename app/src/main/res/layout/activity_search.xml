@@ -3,25 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ActivitySearch">
 
-    <LinearLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <include layout="@layout/toolbar_main"
             android:id="@+id/toolbar"/>
 
-        <FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+    </android.support.design.widget.AppBarLayout>
 
-    </LinearLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <!--ToDo Textfeld mit Suchkriterium-->
+        <!--ToDo Dropdown Auswahl Art-->
+        <!--ToDo Dropdown Auswahl Masseinheit-->
+        <!--ToDo Buttongruppe Auswahl Form-->
+        <!--ToDo Buttongruppe Auswahl Antrieb-->
+        <!--ToDo Automulticomplete Auswahl Ausführung-->
+
+    </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

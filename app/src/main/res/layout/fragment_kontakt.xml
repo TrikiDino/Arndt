@@ -1,14 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentMap">
+    android:background="@color/colorPrimary"
+    tools:context=".FragmentKontakt" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/map" />
+        android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Hans Arndt GmbH"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-black"
+            android:text="W E R K Z E U G F A B R I K"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+        <TextView
+            android:id="@+id/tvAdresse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Industriehof Trecknase 4"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvName2" />
+
+        <TextView
+            android:id="@+id/tvOrt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:text="D - 42897 Remscheid"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAdresse" />
+
+        <TextView
+            android:id="@+id/lblTelefon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Telefon:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrt" />
+
+        <TextView
+            android:id="@+id/tvTelefon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="phone"
+            android:text="+49 2191 60246"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblTelefon"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1" />
+
+        <TextView
+            android:id="@+id/lblFax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Telefax:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblTelefon" />
+
+        <TextView
+            android:id="@+id/tvFax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+49 2161 662956"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblFax"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1" />
+
+        <TextView
+            android:id="@+id/lblEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:text="E-Mail:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblFax" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="email"
+            android:text="info@arndt-tool.de"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblEmail"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1" />
+
+        <TextView
+            android:id="@+id/lblWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Internet:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblEmail" />
+
+        <TextView
+            android:id="@+id/tvWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="www.arndt-tool.de"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblWeb"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1" />
+
+        <TextView
+            android:id="@+id/lblUstid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:text="UST-IDNr.:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblWeb" />
+
+        <TextView
+            android:id="@+id/tvUstid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DE120774824"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblUstid"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1" />
+
+        <TextView
+            android:id="@+id/lblStNr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Steuernummer:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblUstid" />
+
+        <TextView
+            android:id="@+id/tvStnr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="126/5737/0191"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblStNr"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1" />
+
+        <TextView
+            android:id="@+id/lblGericht"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Registergericht:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblStNr" />
+
+        <TextView
+            android:id="@+id/tvGericht"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wuppertal HRB 11515"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblGericht"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1" />
+
+        <TextView
+            android:id="@+id/lblGeschf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Geschäftsführer:"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblGericht" />
+
+        <TextView
+            android:id="@+id/tvGeschf1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="Hans J. Kasan"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lblGeschf"
+            app:layout_constraintStart_toEndOf="@+id/lblGeschf" />
+
+        <TextView
+            android:id="@+id/tvGeschf2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Brigitte Kasan"
+            android:textColor="@color/blue_ultra_light"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tvGeschf1"
+            app:layout_constraintTop_toBottomOf="@+id/tvGeschf1" />
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>

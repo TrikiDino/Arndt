@@ -131,8 +131,7 @@ public class UtilDaten {
                     jsonObject.has(ZUSTEXT) ? jsonObject.getString(ZUSTEXT) : "",
                     jsonObject.has(NEUHEIT) ? jsonObject.getString(NEUHEIT) : "",
                     jsonObject.has(MOAKTION) ? jsonObject.getString(MOAKTION) : "",
-                    jsonObject.has(SCHALTER) ? jsonObject.getString(SCHALTER) : "",
-                    jsonObject.has(SORT) ? jsonObject.getString(SORT) : "");
+                    jsonObject.has(SCHALTER) ? jsonObject.getInt(SCHALTER) : 1);
 
             Log.d(TAG, "##getKapitel: " + katGruppe[i].toString());
             // ToDo Kapitel-Daten in SQLite ablegen
