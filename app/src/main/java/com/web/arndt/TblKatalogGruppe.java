@@ -20,7 +20,7 @@ public class TblKatalogGruppe implements Parcelable {
     private String symbol_grafik_3;
     private String symbol_grafik_4;
     private String masseinheit;
-    private String artikel_zeile;
+    private int artikel_zeile;
     private String kenn_art_2;
     private String ausfart1;
     private String ausfart2;
@@ -47,7 +47,7 @@ public class TblKatalogGruppe implements Parcelable {
         this.symbol_grafik_3 = parcel.readString();
         this.symbol_grafik_4 = parcel.readString();
         this.masseinheit = parcel.readString();
-        this.artikel_zeile = parcel.readString();
+        this.artikel_zeile = parcel.readInt();
         this.kenn_art_2 = parcel.readString();
         this.ausfart1 = parcel.readString();
         this.ausfart2 = parcel.readString();
@@ -65,7 +65,7 @@ public class TblKatalogGruppe implements Parcelable {
     public TblKatalogGruppe(String sprache, String kuerzel, String gruppe, String text, String zusatz,
                             String uebersetzung, String php_datei, String symbol_grafik_1,
                             String symbol_grafik_2, String symbol_grafik_3, String symbol_grafik_4,
-                            String masseinheit, String artikel_zeile, String kenn_art_2, String ausfart1,
+                            String masseinheit, int artikel_zeile, String kenn_art_2, String ausfart1,
                             String ausfart2, String noart1, String noart2, String sb, String stueckliste,
                             String grafik2, String zustext, String neuheit, String moaktion, int schalter) {
         this.sprache = sprache;
@@ -143,7 +143,7 @@ public class TblKatalogGruppe implements Parcelable {
         return masseinheit;
     }
 
-    public String getArtikel_zeile() {
+    public int getArtikel_zeile() {
         return artikel_zeile;
     }
 
@@ -215,7 +215,7 @@ public class TblKatalogGruppe implements Parcelable {
         parcel.writeString(symbol_grafik_3);
         parcel.writeString(symbol_grafik_4);
         parcel.writeString(masseinheit);
-        parcel.writeString(artikel_zeile);
+        parcel.writeInt(artikel_zeile);
         parcel.writeString(kenn_art_2);
         parcel.writeString(ausfart1);
         parcel.writeString(ausfart2);

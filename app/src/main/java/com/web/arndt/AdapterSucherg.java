@@ -15,11 +15,11 @@ public class AdapterSucherg extends RecyclerView.Adapter<AdapterSucherg.ViewHold
 
     private static final String TAG = AdapterSucherg.class.getSimpleName();
 
-    private ArrayList<ActivitySucherg.CreateList> kapitelList;
+    private ArrayList<CreateList.Gruppe> kapitelList;
     private Context context;
     private View.OnClickListener mOnItemClickListener;
 
-    public AdapterSucherg(Context context, ArrayList<ActivitySucherg.CreateList> galleryList) {
+    public AdapterSucherg(Context context, ArrayList<CreateList.Gruppe> galleryList) {
         this.kapitelList = galleryList;
         this.context = context;
     }

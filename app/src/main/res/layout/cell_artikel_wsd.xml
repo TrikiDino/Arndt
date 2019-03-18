@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/tvBeschreibung"
+        android:id="@+id/tvText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvAusf"
+        android:id="@+id/tvZusatz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,7 +29,7 @@
         android:layout_marginTop="4dp"
         android:text="Chrom-Vanadium-Stahl"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBeschreibung" />
+        app:layout_constraintTop_toBottomOf="@+id/tvText" />
 
     <TextView
         android:id="@+id/tvIso"
@@ -40,7 +40,7 @@
         android:layout_marginTop="4dp"
         android:text="DIN ISO 2936 / (DIN 911)"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAusf" />
+        app:layout_constraintTop_toBottomOf="@+id/tvZusatz" />
 
     <ImageView
         android:id="@+id/ivArtikel"
@@ -54,6 +54,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tvIso"
         app:srcCompat="@mipmap/p911_cv" />
 
+    <ImageView
+        android:id="@+id/ivSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivArtikel"
+        app:layout_constraintStart_toStartOf="@+id/ivArtikel"
+        app:srcCompat="@drawable/s6kant" />
+
     <TextView
         android:id="@+id/tvNo1"
         android:layout_width="wrap_content"
@@ -66,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvIso" />
 
     <TextView
-        android:id="@+id/tvArtNr1"
+        android:id="@+id/tvNoArt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -77,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNo1" />
 
     <TextView
-        android:id="@+id/tvFarbe1"
+        android:id="@+id/tvAusfArt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -85,7 +95,7 @@
         android:layout_marginTop="4dp"
         android:text="schwarz"
         app:layout_constraintStart_toEndOf="@+id/ivArtikel"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtNr1" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNoArt1" />
 
     <TextView
         android:id="@+id/tvNo2"
@@ -95,30 +105,30 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:text="No."
-        app:layout_constraintStart_toEndOf="@+id/tvArtNr1"
+        app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
         app:layout_constraintTop_toBottomOf="@+id/tvIso" />
 
     <TextView
-        android:id="@+id/tvArtNr2"
+        android:id="@+id/tvNoArt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:text="911-CV-C"
-        app:layout_constraintStart_toEndOf="@+id/tvArtNr1"
+        app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
         app:layout_constraintTop_toBottomOf="@+id/tvNo2" />
 
     <TextView
-        android:id="@+id/tvFarbe2"
+        android:id="@+id/tvAusfArt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:text="chromatisiert"
-        app:layout_constraintStart_toEndOf="@+id/tvArtNr1"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtNr2" />
+        app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoArt2" />
 
     <TextView
         android:id="@+id/lblMass"
@@ -184,6 +194,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ivArtikel" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcVarianten"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"

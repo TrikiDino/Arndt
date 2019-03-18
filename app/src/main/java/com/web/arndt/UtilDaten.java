@@ -119,7 +119,7 @@ public class UtilDaten {
                     jsonObject.has(SYMBOL_GRAFIK_3) ? jsonObject.getString(SYMBOL_GRAFIK_3) : "",
                     jsonObject.has(SYMBOL_GRAFIK_4) ? jsonObject.getString(SYMBOL_GRAFIK_4) : "",
                     jsonObject.has(MASSEINHEIT) ? jsonObject.getString(MASSEINHEIT) : "",
-                    jsonObject.has(ARTIKEL_ZEILE) ? jsonObject.getString(ARTIKEL_ZEILE) : "",
+                    jsonObject.has(ARTIKEL_ZEILE) ? jsonObject.getInt(ARTIKEL_ZEILE) : 0,
                     jsonObject.has(KENN_ART_2) ? jsonObject.getString(KENN_ART_2) : "",
                     jsonObject.has(AUSFART1) ? jsonObject.getString(AUSFART1) : "",
                     jsonObject.has(AUSFART2) ? jsonObject.getString(AUSFART2) : "",

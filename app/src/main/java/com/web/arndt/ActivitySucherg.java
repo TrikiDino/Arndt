@@ -3,6 +3,7 @@ package com.web.arndt;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -21,7 +22,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 // ToDo Anzeige des Suchergebnisses und Auswählmöglichkeit
@@ -60,7 +65,7 @@ public class ActivitySucherg extends AppCompatActivity implements NavigationView
     private static final String TAG = ActivitySucherg.class.getSimpleName();
     public String para = "";
 
-    List<TblKatalogGruppe> katGruppe = new ArrayList<TblKatalogGruppe>();
+    ArrayList<TblKatalogGruppe> katGruppe = new ArrayList<TblKatalogGruppe>();
 
     private View.OnClickListener onItemClickListener = new View.OnClickListener() {
         @Override
@@ -68,10 +73,32 @@ public class ActivitySucherg extends AppCompatActivity implements NavigationView
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
             TblKatalogGruppe thisItem = katGruppe.get(position);
+
             Log.d(TAG, "##onClick: es wurde Artikel "+ thisItem.getKuerzel() + " geklickt");
+
+            String istGruppe = thisItem.getGruppe()==null?thisItem.getKuerzel():thisItem.getGruppe();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                katGruppe.removeIf(t -> !t.getGruppe().equals(istGruppe)&!t.getKuerzel().equals(istGruppe));
+            } else {
+                for(TblKatalogGruppe gruppe : katGruppe){
+                    if(!(gruppe.getGruppe().equals(istGruppe))&!(gruppe.getKuerzel().equals(istGruppe))){
+                        katGruppe.remove(gruppe);
+                    }
+                }
+            }
+
+            if(thisItem.getGruppe()==null) {
+                katGruppe.add(0, thisItem);
+            } else {
+                katGruppe.add(thisItem);
+            }
+
             Intent intArt = new Intent(ActivitySucherg.this, ActivityArtikel.class);
 
-            intArt.putExtra("katalog", thisItem);
+            Log.d(TAG, "##onClick 99: " + Arrays.deepToString(katGruppe.toArray()));
+
+            intArt.putParcelableArrayListExtra("katalog",katGruppe);
             startActivity(intArt);
         }
     };
@@ -106,51 +133,11 @@ public class ActivitySucherg extends AppCompatActivity implements NavigationView
         return true;
     }
 
-    public class CreateList {
+    private ArrayList<CreateList.Gruppe> prepareData(String[] t_artikel, String[] t_mass, Integer[] i_artikel, Integer[] i_symbol){
 
-        private String t_artikel;
-        private String t_mass;
-        private Integer i_artikel;
-        private Integer i_symbol;
-
-        public String getT_artikel() {
-            return t_artikel;
-        }
-
-        public void setT_artikel(String t_artikel) {
-            this.t_artikel = t_artikel;
-        }
-
-        public String getT_mass() {
-            return t_mass;
-        }
-
-        public void setT_mass(String t_mass) {
-            this.t_mass = t_mass;
-        }
-
-        public Integer getI_artikel() {
-            return i_artikel;
-        }
-
-        public void setI_artikel(Integer i_artikel) {
-            this.i_artikel = i_artikel;
-        }
-
-        public Integer getI_symbol() {
-            return i_symbol;
-        }
-
-        public void setI_symbol(Integer i_symbol) {
-            this.i_symbol = i_symbol;
-        }
-    }
-
-    private ArrayList<CreateList> prepareData(String[] t_artikel, String[] t_mass, Integer[] i_artikel, Integer[] i_symbol){
-
-        ArrayList<CreateList> imgArtikel = new ArrayList<>();
+        ArrayList<CreateList.Gruppe> imgArtikel = new ArrayList<>();
         for(int i = 0; i< t_artikel.length; i++){
-            CreateList createList = new CreateList();
+            CreateList.Gruppe createList = new CreateList.Gruppe();
             createList.setT_artikel(t_artikel[i]);
             createList.setT_mass(t_mass[i]);
             createList.setI_artikel(i_artikel[i]);
@@ -186,7 +173,7 @@ public class ActivitySucherg extends AppCompatActivity implements NavigationView
                             jsonObject.has(SYMBOL_GRAFIK_3) ? jsonObject.getString(SYMBOL_GRAFIK_3) : "",
                             jsonObject.has(SYMBOL_GRAFIK_4) ? jsonObject.getString(SYMBOL_GRAFIK_4) : "",
                             jsonObject.has(MASSEINHEIT) ? jsonObject.getString(MASSEINHEIT) : "",
-                            jsonObject.has(ARTIKEL_ZEILE) ? jsonObject.getString(ARTIKEL_ZEILE) : "",
+                            jsonObject.has(ARTIKEL_ZEILE) ? jsonObject.getInt(ARTIKEL_ZEILE) : 1,
                             jsonObject.has(KENN_ART_2) ? jsonObject.getString(KENN_ART_2) : "",
                             jsonObject.has(AUSFART1) ? jsonObject.getString(AUSFART1) : "",
                             jsonObject.has(AUSFART2) ? jsonObject.getString(AUSFART2) : "",
@@ -216,7 +203,7 @@ public class ActivitySucherg extends AppCompatActivity implements NavigationView
 
         @Override
         protected void onPostExecute(String s) {
-            Log.d(TAG, "##onCreate: " + katGruppe.toString());
+            Log.d(TAG, "##onPostExecute: " + katGruppe.toString());
             String t_artikel[] = new String[katGruppe.size()];
             String t_mass[] = new String[katGruppe.size()];
             Integer i_artikel[] = new Integer[katGruppe.size()];
@@ -258,12 +245,11 @@ public class ActivitySucherg extends AppCompatActivity implements NavigationView
                 layoutManager = new GridLayoutManager(getApplicationContext(),3);// In portrait
             }
             recyclerView.setLayoutManager(layoutManager);
-            ArrayList<CreateList> katalogGruppes = prepareData(t_artikel, t_mass, i_artikel, i_symbol);
+            ArrayList<CreateList.Gruppe> katalogGruppes = prepareData(t_artikel, t_mass, i_artikel, i_symbol);
             AdapterSucherg adapter = new AdapterSucherg(getApplicationContext(), katalogGruppes);
             recyclerView.setAdapter(adapter);
 
             adapter.setOnItemClickListener(onItemClickListener);
-
 
         }
     }

@@ -1,24 +1,20 @@
 package com.web.arndt;
 
-import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // ToDo Anzeige des ausgeählten Artikels
@@ -29,19 +25,6 @@ import java.util.List;
 
 
 public class ActivityArtikel extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    // TblArtikel
-    private static final String TEILE = "Teile";
-    private static final String WARENGRUPPE = "Warengruppe";
-    private static final String ABMESSUNG = "Abmessung";
-    private static final String MASS = "Mass";
-    private static final String ARTIKELNUMMER = "Artikelnummer";
-    private static final String GEWICHT = "Gewicht";
-    private static final String GEWICHTEINH = "GewichtEinh";
-    private static final String GROESSEINCH = "GroesseINCH";
-    private static final String BESCHAFFUNG = "Beschaffung";
-    private static final String VERPACKEINHTEXT = "VerpackEinhText";
-    private static final String GROESSEINCHDEZ = "GroesseINCHdez";
 
     // Stückliste
     // private static final String ARTIKELNUMMER = "artikelnummer";
@@ -65,9 +48,7 @@ public class ActivityArtikel extends AppCompatActivity implements NavigationView
     private static final String SCHALTER = "schalter";
 
     private static final String TAG = ActivitySucherg.class.getSimpleName();
-    public String para = "";
-
-    List<TblArtikel> artGruppe = new ArrayList<TblArtikel>();
+    public List<TblKatalogGruppe> katGruppe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +58,7 @@ public class ActivityArtikel extends AppCompatActivity implements NavigationView
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_sucherg);
+        DrawerLayout drawer = findViewById(R.id.drawer_artikel);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.nav_open_drawer, R.string.nav_close_drawer);
         drawer.addDrawerListener(toggle);
@@ -86,9 +67,99 @@ public class ActivityArtikel extends AppCompatActivity implements NavigationView
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        para = getIntent().getExtras().getString("para", "");
+        // gewählter Artikel (oder Artikelgruppe) wird übergeben
+        katGruppe = getIntent().getParcelableArrayListExtra("katalog");
 
-        new ActivityArtikel.get_Artikel().execute();
+        String kuerzel[] = new String[katGruppe.size()];
+        String t_text[] = new String[katGruppe.size()];
+        String t_zusatz[] = new String[katGruppe.size()];
+        String t_iso[] = new String[katGruppe.size()];
+        Integer i_artikel[] = new Integer[katGruppe.size()];
+        Integer i_symbol1[] = new Integer[katGruppe.size()];
+        String t_noArt1[] = new String[katGruppe.size()];
+        String t_ausfArt1[] = new String[katGruppe.size()];
+        String t_noArt2[] = new String[katGruppe.size()];
+        String t_ausfArt2[] = new String[katGruppe.size()];
+        String sprache[] = new String[katGruppe.size()];
+        String gruppe[] = new String[katGruppe.size()];
+        String uebersetzung[] = new String[katGruppe.size()];
+        String php_datei[] = new String[katGruppe.size()];
+        String symbol_grafik_2[] = new String[katGruppe.size()];
+        String symbol_grafik_3[] = new String[katGruppe.size()];
+        String symbol_grafik_4[] = new String[katGruppe.size()];
+        String masseinheit[] = new String[katGruppe.size()];
+        int artikel_zeile[] = new int[katGruppe.size()];
+        String kenn_art_2[] = new String[katGruppe.size()];
+        String sb[] = new String[katGruppe.size()];
+        String stueckliste[] = new String[katGruppe.size()];
+        String grafik2[] = new String[katGruppe.size()];
+        String zustext[] = new String[katGruppe.size()];
+        String neuheit[] = new String[katGruppe.size()];
+        String moaktion[] = new String[katGruppe.size()];
+        int schalter[] = new int[katGruppe.size()];
+
+        String ni_artikel;
+        String ni_symbol;
+
+        int i = 0;
+        for(TblKatalogGruppe artGruppe : katGruppe){
+
+            kuerzel[i] = artGruppe.getKuerzel();
+            t_text[i] = artGruppe.getText();
+            t_zusatz[i] = artGruppe.getZusatz();
+            t_iso[i] = artGruppe.getZusatz();
+            ni_artikel = ("p"+ artGruppe.getKuerzel())
+                    .replace("-","_")
+                    .replace("_mm","")
+                    .replace("_inch","").trim();
+
+            ni_symbol = ("s"+ artGruppe.getSymbol_grafik_1())
+                    .replace("-","_").toLowerCase().trim();
+
+            i_artikel[i] = getResources().getIdentifier(ni_artikel,
+                    "mipmap",getPackageName());
+            i_symbol1[i] = getResources().getIdentifier(ni_symbol,
+                    "drawable",getPackageName());
+
+            t_noArt1[i] = artGruppe.getNoart1();
+            t_ausfArt1[i] = artGruppe.getAusfart1();
+            t_noArt2[i] = artGruppe.getNoart2();
+            t_ausfArt2[i] = artGruppe.getAusfart2();
+            sprache[i] = artGruppe.getSprache();
+            gruppe[i] = artGruppe.getGruppe();
+            uebersetzung[i] = artGruppe.getUebersetzung();
+            php_datei[i] = artGruppe.getPhp_datei();
+            symbol_grafik_2[i] = artGruppe.getSymbol_grafik_2();
+            symbol_grafik_3[i] = artGruppe.getSymbol_grafik_3();
+            symbol_grafik_4[i] = artGruppe.getSymbol_grafik_4();
+            masseinheit[i] = artGruppe.getMasseinheit();
+            artikel_zeile[i] = artGruppe.getArtikel_zeile();
+            kenn_art_2[i] = artGruppe.getKenn_art_2();
+            sb[i] = artGruppe.getSb();
+            stueckliste[i] = artGruppe.getStueckliste();
+            grafik2[i] = artGruppe.getGrafik2();
+            zustext[i] = artGruppe.getZustext();
+            neuheit[i] = artGruppe.getNeuheit();
+            moaktion[i] = artGruppe.getMoaktion();
+            schalter[i] = artGruppe.getSchalter();
+
+            i++;
+        }
+
+        RecyclerView recyclerView = findViewById(R.id.rcArtikel);
+        recyclerView.setHasFixedSize(true);
+
+
+        RecyclerView.LayoutManager layoutManager;
+        int orientation = getResources().getConfiguration().orientation;
+        layoutManager = new GridLayoutManager(getApplicationContext(),1);
+        recyclerView.setLayoutManager(layoutManager);
+
+        ArrayList<CreateList.ArtGruppe> artGruppes = prepareData(kuerzel, t_text, t_zusatz, t_iso, i_artikel,
+                i_symbol1, t_noArt1, t_ausfArt1, t_noArt2, t_ausfArt2);
+        AdapterArtikel adapter = new AdapterArtikel(getApplicationContext(), artGruppes);
+        recyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -102,185 +173,27 @@ public class ActivityArtikel extends AppCompatActivity implements NavigationView
 
     }
 
-    public class CreateList {
+    private ArrayList<CreateList.ArtGruppe> prepareData(String[] kuerzel, String[] t_text, String[] t_zusatz,
+                                                        String[] t_iso, Integer[] i_artikel, Integer[] i_symbol,
+                                                        String[] t_noArt1, String[] t_ausfArt1,
+                                                        String[] t_noArt2, String[] t_ausfArt2){
 
-        private String t_beschreibung;
-        private String t_ausfuehrung;
-        String t_iso;
-        Integer i_artikel;
-        Integer i_symbol;
-        String t_artnr1;
-        String t_farbe1;
-        String t_artnr2;
-        String t_farbe2;
-
-        public String getT_beschreibung() {
-            return t_beschreibung;
-        }
-
-        public void setT_beschreibung(String t_beschreibung) {
-            this.t_beschreibung = t_beschreibung;
-        }
-
-        public String getT_ausfuehrung() {
-            return t_ausfuehrung;
-        }
-
-        public void setT_ausfuehrung(String t_ausfuehrung) {
-            this.t_ausfuehrung = t_ausfuehrung;
-        }
-
-        public String getT_iso() {
-            return t_iso;
-        }
-
-        public void setT_iso(String t_iso) {
-            this.t_iso = t_iso;
-        }
-
-        public Integer getI_artikel() {
-            return i_artikel;
-        }
-
-        public void setI_artikel(Integer i_artikel) {
-            this.i_artikel = i_artikel;
-        }
-
-        public Integer getI_symbol() {
-            return i_symbol;
-        }
-
-        public void setI_symbol(Integer i_symbol) {
-            this.i_symbol = i_symbol;
-        }
-
-        public String getT_artnr1() {
-            return t_artnr1;
-        }
-
-        public void setT_artnr1(String t_artnr1) {
-            this.t_artnr1 = t_artnr1;
-        }
-
-        public String getT_farbe1() {
-            return t_farbe1;
-        }
-
-        public void setT_farbe1(String t_farbe1) {
-            this.t_farbe1 = t_farbe1;
-        }
-
-        public String getT_artnr2() {
-            return t_artnr2;
-        }
-
-        public void setT_artnr2(String t_artnr2) {
-            this.t_artnr2 = t_artnr2;
-        }
-
-        public String getT_farbe2() {
-            return t_farbe2;
-        }
-
-        public void setT_farbe2(String t_farbe2) {
-            this.t_farbe2 = t_farbe2;
-        }
-    }
-
-    private ArrayList<ActivityArtikel.CreateList> prepareArtikel(String t_beschreibung[],
-                                                                 String t_ausfuehrung[], String t_iso[],
-                                                                 Integer i_artikel[], Integer i_symbol[],
-                                                                 String t_artnr1[], String t_farbe1[],
-                                                                 String t_artnr2[], String t_farbe2[]){
-
-        ArrayList<ActivityArtikel.CreateList> imgArtikel = new ArrayList<>();
-        for(int i = 0; i< t_beschreibung.length; i++){
-            CreateList createList = new CreateList();
-            createList.setT_beschreibung(t_beschreibung[i]);
-            createList.setT_ausfuehrung(t_ausfuehrung[i]);
+        ArrayList<CreateList.ArtGruppe> grpArtikel = new ArrayList<>();
+        for(int i = 0; i< t_text.length; i++){
+            CreateList.ArtGruppe createList = new CreateList.ArtGruppe();
+            createList.setKuerzel(kuerzel[i]);
+            createList.setT_text(t_text[i]);
+            createList.setT_zusatz(t_zusatz[i]);
             createList.setT_iso(t_iso[i]);
             createList.setI_artikel(i_artikel[i]);
             createList.setI_symbol(i_symbol[i]);
-            createList.setT_artnr1(t_artnr1[i]);
-            createList.setT_farbe1(t_farbe1[i]);
-            createList.setT_artnr2(t_artnr2[i]);
-            createList.setT_farbe2(t_farbe2[i]);
-            imgArtikel.add(createList);
+            createList.setT_noArt1(t_noArt1[i]);
+            createList.setT_ausfArt1(t_ausfArt1[i]);
+            createList.setT_noArt2(t_noArt2[i]);
+            createList.setT_ausfArt2(t_ausfArt2[i]);
+            grpArtikel.add(createList);
         }
-        return imgArtikel;
+        return grpArtikel;
     }
 
-    private class get_Artikel extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            try {
-                String url = "http://www.arndt-tool.de/app/php/json.php" + para;
-                JSONArray jsonArray = new JSONArray(UtilDaten.getFromServer(url));
-
-                TblArtikel artikel;
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    artikel = new TblArtikel(
-                            jsonObject.has(TEILE) ? jsonObject.getInt(TEILE) : 1,
-                            jsonObject.has(WARENGRUPPE) ? jsonObject.getString(WARENGRUPPE) : para,
-                            jsonObject.has(ABMESSUNG) ? jsonObject.getString(ABMESSUNG) : "",
-                            jsonObject.has(MASS) ? jsonObject.getString(MASS) : "",
-                            jsonObject.has(ARTIKELNUMMER) ? jsonObject.getString(ARTIKELNUMMER) : "",
-                            jsonObject.has(GEWICHT) ? jsonObject.getDouble(GEWICHT) : 0,
-                            jsonObject.has(GEWICHTEINH) ? jsonObject.getString(GEWICHTEINH) : "",
-                            jsonObject.has(GROESSEINCH) ? jsonObject.getString(GROESSEINCH) : "",
-                            jsonObject.has(BESCHAFFUNG) ? jsonObject.getString(BESCHAFFUNG) : "",
-                            jsonObject.has(VERPACKEINHTEXT) ? jsonObject.getString(VERPACKEINHTEXT) : "",
-                            jsonObject.has(GROESSEINCHDEZ) ? jsonObject.getDouble(GROESSEINCHDEZ) : 0);
-
-                    Log.d(TAG, "##getKapitel 164: " + artikel.toString());
-
-                    artGruppe.add(artikel);
-                    // ToDo Artikel-Daten in SQLite oder Firebase ablegen, evtl Firebase <=> mySQL Verbindung
-                }
-                return "";
-            } catch (IOException e) {
-                Log.e(TAG, "doInBackground: ", e);
-            } catch (JSONException e) {
-                Log.e(TAG, "doInBackground: ", e);
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            Log.d(TAG, "##onCreate: " + artGruppe.toString());
-            String t_beschreibung[] = new String[artGruppe.size()];
-            String t_ausfuehrung[] = new String[artGruppe.size()];
-            String t_iso[] = new String[artGruppe.size()];
-            Integer i_artikel[] = new Integer[artGruppe.size()];
-            Integer i_symbol[] = new Integer[artGruppe.size()];
-            String t_artnr1[] = new String[artGruppe.size()];
-            String t_farbe1[] = new String[artGruppe.size()];
-            String t_artnr2[] = new String[artGruppe.size()];
-            String t_farbe2[] = new String[artGruppe.size()];
-
-            int i = 0;
-            for(TblArtikel gruppe : artGruppe){
-
-
-                i++;
-            }
-
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rcKatGruppe);
-            recyclerView.setHasFixedSize(true);
-
-            RecyclerView.LayoutManager layoutManager;
-            int orientation = getResources().getConfiguration().orientation;
-            layoutManager = new GridLayoutManager(getApplicationContext(),1);
-            recyclerView.setLayoutManager(layoutManager);
-            ArrayList<ActivityArtikel.CreateList> artikelGruppes = prepareArtikel(t_beschreibung, t_ausfuehrung, t_iso, i_artikel, i_symbol, t_artnr1, t_farbe1, t_artnr2, t_farbe2);
-            AdapterArtikel adapter = new AdapterArtikel(getApplicationContext(), artikelGruppes);
-            recyclerView.setAdapter(adapter);
-
-        }
-    }
 }
