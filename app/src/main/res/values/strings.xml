@@ -5,6 +5,7 @@
     <string name="title_activity_artikel">   Artikeldetails</string>
     <string name="title_activity_search">   Artikelsuche</string>
     <string name="title_activity_maps">   </string>
+    <string name="title_activity_einstellungen">   Benutzer Einstellungen</string>
 
     <string name="app_name">   Hans Arndt GmbH</string>
     <string name="artikel">Einzelansicht Artikel</string>
@@ -55,7 +56,14 @@
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB7D-sK2DlZbeZQAmKwoNBR1TSuXUfkxOA</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="synch">
+        <item>Nie</item>
+        <item>Bei jedem Start</item>
+        <item>Bei jeder Suche</item>
+        <item>Bei jedem Artikelaufruf</item>
+        <item>Bei jeder neuen Suche</item>
+        <item>Bei Aufruf eines neuen Artikels</item>
+    </array>
+
 
 </resources>

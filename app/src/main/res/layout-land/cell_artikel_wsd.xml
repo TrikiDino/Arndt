@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_ultra_light"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--ToDo Elemente mit größerem Abstand + zusätzliche Informationen-->
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Sechskant-Winkelschraubendreher"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvZusatz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="Chrom-Vanadium-Stahl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvText" />
+
+    <TextView
+        android:id="@+id/tvIso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="DIN ISO 2936 / (DIN 911)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvZusatz" />
+
+    <ImageView
+        android:id="@+id/ivArtikel"
+        android:layout_width="200dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvIso"
+        app:srcCompat="@mipmap/p911_cv" />
+
+    <ImageView
+        android:id="@+id/ivSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivArtikel"
+        app:layout_constraintStart_toStartOf="@+id/ivArtikel"
+        app:srcCompat="@drawable/s6kant" />
+
+    <TextView
+        android:id="@+id/tvNo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="No."
+        app:layout_constraintStart_toEndOf="@+id/ivArtikel"
+        app:layout_constraintTop_toBottomOf="@+id/tvIso" />
+
+    <TextView
+        android:id="@+id/tvNoArt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="911-CV-B"
+        app:layout_constraintStart_toEndOf="@+id/ivArtikel"
+        app:layout_constraintTop_toBottomOf="@+id/tvNo1" />
+
+    <TextView
+        android:id="@+id/tvAusfArt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="schwarz"
+        app:layout_constraintStart_toEndOf="@+id/ivArtikel"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoArt1" />
+
+    <TextView
+        android:id="@+id/tvNo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="No."
+        app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
+        app:layout_constraintTop_toBottomOf="@+id/tvIso" />
+
+    <TextView
+        android:id="@+id/tvNoArt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="911-CV-C"
+        app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
+        app:layout_constraintTop_toBottomOf="@+id/tvNo2" />
+
+    <TextView
+        android:id="@+id/tvAusfArt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:text="chromatisiert"
+        app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoArt2" />
+
+    <TextView
+        android:id="@+id/lblMass"
+        android:layout_width="40dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/blue_grey"
+        android:text="mm"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtikel" />
+
+    <ImageView
+        android:id="@+id/ivAbm"
+        android:layout_width="40dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/blue_grey"
+        app:layout_constraintStart_toEndOf="@+id/lblMass"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtikel"
+        app:srcCompat="@drawable/sschenkel" />
+
+    <ImageView
+        android:id="@+id/ivVerp"
+        android:layout_width="40dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/blue_grey"
+        app:layout_constraintStart_toEndOf="@+id/ivAbm"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtikel"
+        app:srcCompat="@drawable/sverpack" />
+
+    <ImageView
+        android:id="@+id/ivGew"
+        android:layout_width="40dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/blue_grey"
+        app:layout_constraintStart_toEndOf="@+id/ivVerp"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtikel"
+        app:srcCompat="@drawable/sgewicht" />
+
+    <TextView
+        android:id="@+id/lblNo1"
+        android:layout_width="120dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/blue_grey"
+        android:text="No."
+        app:layout_constraintStart_toEndOf="@+id/ivGew"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtikel" />
+
+    <TextView
+        android:id="@+id/lblNo2"
+        android:layout_width="120dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/blue_grey"
+        android:text="No."
+        app:layout_constraintStart_toEndOf="@+id/lblNo1"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtikel" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedSV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblNo1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcVarianten"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>

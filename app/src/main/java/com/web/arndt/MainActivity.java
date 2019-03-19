@@ -1,5 +1,6 @@
 package com.web.arndt;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +10,19 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,7 +51,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-//    ToDo Funktion der onNavigation auslagern, so das redundanter Code vermieden wird
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu, this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    //    ToDo Funktion der onNavigation auslagern, so das redundanter Code vermieden wird
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -52,7 +70,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_login:
 //                ToDo Login für Bestandskunden
-                //intent = new Intent(this,ActivityLogin.class);
+                AlertDialog loginDialog = createLoginDialog();
+                loginDialog.show();
                 break;
             case R.id.nav_kontakt:
                 fragment = new FragmentKontakt();
@@ -62,7 +81,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.app_bar_search:
 //                ToDo ActivitySearch starten
-                intent = new Intent(this, ActivitySearch.class);
+                AlertDialog searchDialog = createSearchDialog();
+                searchDialog.show();
+
                 break;
             default:
                 intent = new Intent(this, ActivityKatalog.class);
@@ -73,7 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
-        } else {
+        } else if(intent!=null){
+
             startActivity(intent);
         }
 
@@ -81,6 +103,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    private AlertDialog createLoginDialog() {
+        // ToDo Login über Datenbankzugriff umsetzen
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+
+        View dialogsView = inflater.inflate(R.layout.dialog_search, null);
+
+        return builder.create();
+    }
+
+    private AlertDialog createSearchDialog() {
+        // ToDo zusätzliche Suchoptionen einfügen
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+
+        View dialogsView = inflater.inflate(R.layout.dialog_search, null);
+
+        return builder.create();
     }
 
 }

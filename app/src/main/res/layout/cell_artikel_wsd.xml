@@ -193,14 +193,26 @@
         app:layout_constraintStart_toEndOf="@+id/lblNo1"
         app:layout_constraintTop_toBottomOf="@+id/ivArtikel" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcVarianten"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedSV"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblMass" />
+        app:layout_constraintTop_toBottomOf="@+id/lblNo1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcVarianten"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.constraint.ConstraintLayout>

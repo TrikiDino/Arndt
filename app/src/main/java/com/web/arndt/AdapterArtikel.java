@@ -1,11 +1,11 @@
 package com.web.arndt;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -222,7 +222,8 @@ public class AdapterArtikel extends RecyclerView.Adapter<AdapterArtikel.ViewHold
             artVarianten = prepareVariante(t_mass, t_abm, t_verp, t_gew, t_no1, t_no2);
 
             RecyclerView.LayoutManager layoutManager;
-            layoutManager = new CustomLinearLayoutManager(context);
+            layoutManager = new LinearLayoutManager(context);
+            ViewCompat.setNestedScrollingEnabled(rcDetails, false);
             rcDetails.setLayoutManager(layoutManager);
 
             AdapterVariante adapter = new AdapterVariante(context, artVarianten);
