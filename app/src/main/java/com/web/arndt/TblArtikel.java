@@ -1,5 +1,6 @@
 package com.web.arndt;
 
+
 // ToDo die Struktur für die Artikeldaten - OK
 // Die Struktur orientiert sich an der bestehenden Struktur in der fs_web
 public class TblArtikel {
@@ -178,5 +179,13 @@ public class TblArtikel {
 
     public void setVK(double VK) {
         this.VK = VK;
+    }
+
+    @Override
+    public String toString() {
+        return "Artikelnummer: " + Artikelnummer +
+                "\nArtikelnummer2: " + Artikelnummer2 +
+                "\nWarengruppe: " + Warengruppe +
+                "\nMasseinheit: " + Mass + " mm: " + GroesseMM + " inch: " + GroesseINCH;
     }
 }

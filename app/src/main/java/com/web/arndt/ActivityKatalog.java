@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -93,7 +94,11 @@ public class ActivityKatalog extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        new UtilNav().onNavigation(this, item);
-        return true;
+        boolean bNav = new UtilNav().onNavigation(this, item);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_kat);
+        drawer.closeDrawer(GravityCompat.START);
+
+        return bNav;
     }
 }

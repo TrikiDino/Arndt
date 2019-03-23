@@ -61,43 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //    ToDo Funktion der onNavigation auslagern, so das redundanter Code vermieden wird
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        Fragment fragment = null;
-        Intent intent = null;
-        switch (id) {
-            case R.id.nav_katalog:
-                intent = new Intent(this, ActivityKatalog.class);
-                break;
-            case R.id.nav_login:
-//                ToDo Login für Bestandskunden
-                AlertDialog loginDialog = createLoginDialog();
-                loginDialog.show();
-                break;
-            case R.id.nav_kontakt:
-                fragment = new FragmentKontakt();
-                break;
-            case R.id.nav_map:
-                intent = new Intent(this, ActivityMaps.class);
-                break;
-            case R.id.app_bar_search:
-//                ToDo ActivitySearch starten
-                AlertDialog searchDialog = createSearchDialog();
-                searchDialog.show();
-
-                break;
-            default:
-                intent = new Intent(this, ActivityKatalog.class);
-                break;
-        }
-
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment);
-            ft.commit();
-        } else if(intent!=null){
-
-            startActivity(intent);
-        }
+        boolean bNav = new UtilNav().onNavigation(this, item);
 
         DrawerLayout drawer = findViewById(R.id.drawer_main);
         drawer.closeDrawer(GravityCompat.START);
@@ -105,25 +69,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private AlertDialog createLoginDialog() {
-        // ToDo Login über Datenbankzugriff umsetzen
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-
-        View dialogsView = inflater.inflate(R.layout.dialog_search, null);
-
-        return builder.create();
-    }
-
-    private AlertDialog createSearchDialog() {
-        // ToDo zusätzliche Suchoptionen einfügen
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-
-        View dialogsView = inflater.inflate(R.layout.dialog_search, null);
-
-        return builder.create();
-    }
 
 }
 

@@ -56,14 +56,43 @@
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB7D-sK2DlZbeZQAmKwoNBR1TSuXUfkxOA</string>
 
-    <array name="synch">
+    <string-array name="synch">
         <item>Nie</item>
         <item>Bei jedem Start</item>
         <item>Bei jeder Suche</item>
         <item>Bei jedem Artikelaufruf</item>
         <item>Bei jeder neuen Suche</item>
         <item>Bei Aufruf eines neuen Artikels</item>
-    </array>
+    </string-array>
 
+    <!--Arrays für die Suche-->
+    <string-array name="masseinheit">
+        <item>inch/mm</item>
+        <item>nur inch</item>
+        <item>nur mm</item>
+    </string-array>
+
+    <string-array name="art">
+        <item>alles</item>
+        <item>Schlüssel</item>
+        <item>Schraubendreher</item>
+        <item>Bits</item>
+    </string-array>
+
+    <string-array name="ausfuehrung">
+        <item>alle</item>
+        <item>DIN 911 / DIN ISO 2936</item>
+        <item>Chrom-Vanadium</item>
+        <item>Werkzeugstahl</item>
+        <item>verchromt</item>
+        <item>schwarz</item>
+        <item>vernickelt</item>
+        <item>lange Ausführung</item>
+        <item>brüniert</item>
+        <item>flexibel</item>
+        <item>PP-Griff</item>
+        <item>magnetisch</item>
+        <item>nichtr magnetisch</item>
+    </string-array>
 
 </resources>

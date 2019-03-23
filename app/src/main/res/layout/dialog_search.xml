@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <!--ToDo Textfeld mit Suchkriterium-->
+
     <TextView
         android:id="@+id/lblSuchfeld"
         android:layout_width="wrap_content"
@@ -22,42 +23,37 @@
         android:id="@+id/etSuchfeld"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="Suchtext eingeben"
         android:inputType="text"
-        app:layout_constraintStart_toEndOf="@+id/lblSuchfeld"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/swtnArt"
+        tools:layout_editor_absoluteY="8dp" />
 
-    <Button
-        android:id="@+id/btnSuche"
+    <TextView
+        android:id="@+id/lblnArt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/suchen"
-        app:layout_constraintEnd_toStartOf="@+id/btnEnde"
+        android:layout_marginTop="8dp"
+        android:text="nur Artikelnummer:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSuchfeld" />
 
-    <Button
-        android:id="@+id/btnEnde"
+    <Switch
+        android:id="@+id/swtnArt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Abbrechen"
+        android:textOff="Volltextsuche"
+        android:textOn="nur Artikelnummer"
+        app:layout_constraintBottom_toBottomOf="@+id/lblSuchfeld"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSuche"
-        app:layout_constraintTop_toBottomOf="@+id/etSuchfeld" />
+        app:layout_constraintTop_toTopOf="@+id/lblSuchfeld" />
+
 
     <!--ToDo Dropdown Auswahl Art-->
     <!--ToDo Dropdown Auswahl Masseinheit-->

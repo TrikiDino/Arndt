@@ -169,8 +169,11 @@ public class AdapterArtikel extends RecyclerView.Adapter<AdapterArtikel.ViewHold
                                 gInchD = jsonObject.getDouble(GROESSEINCHDEZ);
                             }
                         }
-                        if (katalog.getArtikel_zeile() == 2 && artNr.contains(katalog.kenn_art_2)) {
-                            artNr2 = jsonObject.has(ARTIKELNUMMER) ? jsonObject.getString(ARTIKELNUMMER) : "";
+
+                        jsonObject = jsonArray.getJSONObject(i+1);
+                        artNr2 = jsonObject.has(ARTIKELNUMMER) ? jsonObject.getString(ARTIKELNUMMER) : "";
+                        if (katalog.getArtikel_zeile() == 2 && artNr2.contains(katalog.kenn_art_2)) {
+                            i++;
                         } else {
                             artNr2 = "";
                         }

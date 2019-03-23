@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/blue_light">
 
     <TextView
         android:id="@+id/tvInfo"
@@ -49,40 +49,27 @@
         android:id="@+id/etKundennummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="123456"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/tvInfo"
+        app:layout_constraintStart_toEndOf="@+id/lblKundennummer"
         app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/tvInfo"
+        app:layout_constraintStart_toEndOf="@+id/lblKundennummer"
         app:layout_constraintTop_toBottomOf="@+id/etKundennummer" />
 
-    <Button
-        android:id="@+id/btnEnde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Abbrechen"
-        app:layout_constraintStart_toStartOf="@+id/tvInfo"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-    <Button
-        android:id="@+id/btnAnmelden"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Anmelden"
-        app:layout_constraintEnd_toEndOf="@+id/tvInfo"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 </android.support.constraint.ConstraintLayout>

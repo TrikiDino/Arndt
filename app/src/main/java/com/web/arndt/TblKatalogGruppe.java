@@ -197,6 +197,12 @@ public class TblKatalogGruppe implements Parcelable {
 
 
     @Override
+    public String toString() {
+        return "Kürzel: " + kuerzel + ", ist in Gruppe: " + gruppe + ", hat Stückliste: " + stueckliste +
+                "\n Texte: " + text + ", " + zusatz + ", " + zustext;
+    }
+
+    @Override
     public int describeContents() {
         return 0;
     }

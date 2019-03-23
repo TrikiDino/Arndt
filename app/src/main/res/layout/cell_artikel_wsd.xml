@@ -14,11 +14,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="Sechskant-Winkelschraubendreher"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sechskant-Winkelschraubendreher" />
 
     <TextView
         android:id="@+id/tvZusatz"
@@ -27,9 +27,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="Chrom-Vanadium-Stahl"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvText" />
+        app:layout_constraintTop_toBottomOf="@+id/tvText"
+        tools:text="Chrom-Vanadium-Stahl" />
 
     <TextView
         android:id="@+id/tvIso"
@@ -38,9 +38,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="DIN ISO 2936 / (DIN 911)"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvZusatz" />
+        app:layout_constraintTop_toBottomOf="@+id/tvZusatz"
+        tools:text="DIN ISO 2936 / (DIN 911)" />
 
     <ImageView
         android:id="@+id/ivArtikel"
@@ -52,7 +52,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvIso"
-        app:srcCompat="@mipmap/p911_cv" />
+        tools:srcCompat="@mipmap/p911_cv" />
 
     <ImageView
         android:id="@+id/ivSymbol"
@@ -62,7 +62,7 @@
         android:layout_marginLeft="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivArtikel"
         app:layout_constraintStart_toStartOf="@+id/ivArtikel"
-        app:srcCompat="@drawable/s6kant" />
+        tools:srcCompat="@drawable/s6kant" />
 
     <TextView
         android:id="@+id/tvNo1"
@@ -82,9 +82,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="911-CV-B"
         app:layout_constraintStart_toEndOf="@+id/ivArtikel"
-        app:layout_constraintTop_toBottomOf="@+id/tvNo1" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNo1"
+        tools:text="911-CV-B" />
 
     <TextView
         android:id="@+id/tvAusfArt1"
@@ -93,9 +93,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="schwarz"
         app:layout_constraintStart_toEndOf="@+id/ivArtikel"
-        app:layout_constraintTop_toBottomOf="@+id/tvNoArt1" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNoArt1"
+        tools:text="schwarz" />
 
     <TextView
         android:id="@+id/tvNo2"
@@ -115,9 +115,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="911-CV-C"
         app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
-        app:layout_constraintTop_toBottomOf="@+id/tvNo2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNo2"
+        tools:text="911-CV-C" />
 
     <TextView
         android:id="@+id/tvAusfArt2"
@@ -126,9 +126,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
-        android:text="chromatisiert"
         app:layout_constraintStart_toEndOf="@+id/tvNoArt1"
-        app:layout_constraintTop_toBottomOf="@+id/tvNoArt2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNoArt2"
+        tools:text="chromatisiert" />
 
     <TextView
         android:id="@+id/lblMass"
@@ -193,26 +193,20 @@
         app:layout_constraintStart_toEndOf="@+id/lblNo1"
         app:layout_constraintTop_toBottomOf="@+id/ivArtikel" />
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nestedSV"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblNo1">
+        app:layout_constraintTop_toBottomOf="@+id/lblMass">
 
-        <LinearLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcVarianten"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rcVarianten"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
